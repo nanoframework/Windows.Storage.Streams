@@ -7,15 +7,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>47b02ef4-2bda-4c0f-adc4-076cd39b9310</ProjectGuid>
+    <ProjectGuid>05895b03-993a-45c0-a2c7-e347b3023dd0</ProjectGuid>
     <OutputType>Library</OutputType>
     <FileAlignment>512</FileAlignment>
     <RootNamespace>
     </RootNamespace>
-    <AssemblyName>Windows.Devices.SerialCommunication</AssemblyName>
+    <AssemblyName>Windows.Storage.Streams</AssemblyName>
     <NFTargetVersion>v1.0</NFTargetVersion>
     <NF_IsCoreLibrary>True</NF_IsCoreLibrary>
-    <DocumentationFile>bin\$(Configuration)\Windows.Devices.SerialCommunication.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\Windows.Storage.Streams.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -38,33 +38,30 @@
     <!-- this is one is absolutely mandatory for base class libraries -->
     <NFMDP_STUB_SkeletonWithoutInterop>true</NFMDP_STUB_SkeletonWithoutInterop>
     <NFMDP_STUB_VerboseMinimize>true</NFMDP_STUB_VerboseMinimize>
-    <NFMDP_STUB_GenerateSkeletonFile>Stubs\win_dev_serialcommunications_native</NFMDP_STUB_GenerateSkeletonFile>
-    <NFMDP_STUB_GenerateSkeletonProject>win_dev_serialcommunications</NFMDP_STUB_GenerateSkeletonProject>
+    <NFMDP_STUB_GenerateSkeletonFile>Stubs\win_storage_streams_native</NFMDP_STUB_GenerateSkeletonFile>
+    <NFMDP_STUB_GenerateSkeletonProject>win_storage_streams</NFMDP_STUB_GenerateSkeletonProject>
     <NFMDP_CMD_LINE_OUTPUT>false</NFMDP_CMD_LINE_OUTPUT>
-    <Name>Windows.Devices.SerialCommunication</Name>
+    <Name>Windows.Storage.Streams</Name>
   </PropertyGroup>
   <ItemGroup>
     <NFMDP_PE_LoadHints Include="packages\nanoFramework.CoreLibrary.1.0.0-preview028\lib\mscorlib.dll">
       <InProject>false</InProject>
     </NFMDP_PE_LoadHints>
-    <NFMDP_PE_LoadHints Include="packages\nanoFramework.Runtime.Events.1.0.0-preview017\lib\nanoFramework.Runtime.Events.dll">
-      <InProject>false</InProject>
-    </NFMDP_PE_LoadHints>
   </ItemGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
+    <Compile Include="Buffer.cs" />
+    <Compile Include="ByteOrder.cs" />
+    <Compile Include="DataReader.cs" />
+    <Compile Include="DataWriter.cs" />
+    <Compile Include="IBuffer.cs" />
+    <Compile Include="IDataReader.cs" />
+    <Compile Include="IDataWriter.cs" />
+    <Compile Include="IInputStream.cs" />
+    <Compile Include="InputStreamOptions.cs" />
+    <Compile Include="IOutputStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ErrorReceivedEventArgs.cs" />
-    <Compile Include="IErrorReceivedEventArgs.cs" />
-    <Compile Include="IPinChangedEventArgs.cs" />
-    <Compile Include="ISerialDevice.cs" />
-    <Compile Include="PinChangedEventArgs.cs" />
-    <Compile Include="SerialDevice.cs" />
-    <Compile Include="SerialError.cs" />
-    <Compile Include="SerialHandshake.cs" />
-    <Compile Include="SerialParity.cs" />
-    <Compile Include="SerialPinChange.cs" />
-    <Compile Include="SerialStopBitCount.cs" />
+    <Compile Include="UnicodeEncoding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
@@ -73,11 +70,6 @@
   <ItemGroup>
     <Reference Include="mscorlib, Version=1.0.0.28, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>packages\nanoFramework.CoreLibrary.1.0.0-preview028\lib\mscorlib.dll</HintPath>
-      <Private>True</Private>
-      <SpecificVersion>True</SpecificVersion>
-    </Reference>
-    <Reference Include="nanoFramework.Runtime.Events, Version=1.0.0.17, Culture=neutral, PublicKeyToken=72027bbd7f714be2">
-      <HintPath>packages\nanoFramework.Runtime.Events.1.0.0-preview017\lib\nanoFramework.Runtime.Events.dll</HintPath>
       <Private>True</Private>
       <SpecificVersion>True</SpecificVersion>
     </Reference>

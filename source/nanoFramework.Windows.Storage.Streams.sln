@@ -9,6 +9,11 @@ Project("{5DD5E4FA-CB73-4610-85AB-557B54E96AA9}") = "Nuget.Windows.Storage.Strea
 EndProject
 Project("{5DD5E4FA-CB73-4610-85AB-557B54E96AA9}") = "Nuget.Windows.Storage.Streams.DELIVERABLES", "Nuget.Windows.Storage.Streams.DELIVERABLES\Nuget.Windows.Storage.Streams.DELIVERABLES.nuproj", "{5A4C97FD-F7EA-4A59-8D7F-42EBC1A6D449}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5233031F-90D2-45D8-8DEB-DACA9F43887F}"
+	ProjectSection(SolutionItems) = preProject
+		packages.config = packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

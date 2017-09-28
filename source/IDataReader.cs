@@ -62,7 +62,7 @@ namespace Windows.Storage.Streams
         /// <param name="count">The count of bytes to load into the intermediate buffer.</param>
         /// <returns>The asynchronous operation.</returns>
         //DataReaderLoadOperation LoadAsync(UInt32 count);
-        uint Load(UInt32 count)
+        uint Load(UInt32 count);
 
         /// <summary>
         /// Reads a Boolean value from the input stream.
