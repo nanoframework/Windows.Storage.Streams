@@ -33,6 +33,11 @@
       <Link>content\disasm\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Dependency Include="nanoFramework.CoreLibrary">
+      <Version>[1.0.0-preview038]</Version>
+    </Dependency>
+  </ItemGroup>  
   <PropertyGroup Label="Globals">
     <ProjectGuid>5a4c97fd-f7ea-4a59-8d7f-42ebc1a6d449</ProjectGuid>
   </PropertyGroup>
@@ -42,7 +47,7 @@
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
     <Id>nanoFramework.Windows.Storage.Streams.DELIVERABLES</Id>
-    <Version>1.0.0-preview001</Version>
+    <Version>$(GitVersion_NuGetVersionV2)</Version>
     <Title>nanoFramework.Windows.Storage.Streams.DELIVERABLES</Title>
     <Authors>nanoFramework project contributors</Authors>
     <Owners>nanoFramework project contributors</Owners>
