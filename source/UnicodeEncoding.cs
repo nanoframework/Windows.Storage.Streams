@@ -8,18 +8,9 @@ namespace Windows.Storage.Streams
     /// <summary>
     /// Specifies the type of character encoding for a stream.
     /// </summary>
+    /// <remarks>nanoFramework API does not support UTF16 encoding</remarks>
     public enum UnicodeEncoding
     {
-        /*
-        /// <summary>
-        /// The encoding is UTF-16, with the most significant byte first in the two eight-bit bytes.
-        /// </summary>
-        Utf16BE,
-        /// <summary>
-        /// The encoding is UTF-16, with the least significant byte first in the two eight-bit bytes.
-        /// </summary>
-        Utf16LE,
-        */
         /// <summary>
         /// The encoding is UTF-8.
         /// </summary>

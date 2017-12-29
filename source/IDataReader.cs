@@ -45,12 +45,6 @@ namespace Windows.Storage.Streams
         UnicodeEncoding UnicodeEncoding { get; set; }
 
         /// <summary>
-        /// Detaches a buffer that was previously attached to the reader.
-        /// </summary>
-        /// <returns>The detached buffer.</returns>
-        IBuffer DetachBuffer();
-
-        /// <summary>
         /// Detaches a stream that was previously attached to the reader.
         /// </summary>
         /// <returns>The detached stream.</returns>
@@ -75,7 +69,10 @@ namespace Windows.Storage.Streams
         /// </summary>
         /// <param name="length">The length of the buffer, in bytes.</param>
         /// <returns>The buffer.</returns>
-        IBuffer ReadBuffer(UInt32 length);
+        /// <remarks>
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: IBuffer ReadBuffer(UInt32 length).
+        /// </remarks>
+        byte[] ReadBuffer(UInt32 length);
 
         /// <summary>
         /// Reads a byte value from the input stream.

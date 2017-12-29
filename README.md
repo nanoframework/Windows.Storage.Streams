@@ -5,11 +5,15 @@
 ### Welcome to the **nanoFramework** Windows.Storage.Streams Library repository!
 
 
+[![NuGet](https://img.shields.io/nuget/dt/nanoFramework.Windows.Storage.Streams.Gpio.svg)]() [![#yourfirstpr](https://img.shields.io/badge/first--timers--only-friendly-blue.svg)](https://github.com/nanoframework/Home/blob/master/CONTRIBUTING.md)
+
+
 ## Build status
 
 | Component | Build Status | NuGet Package |
 |:-|---|---|
-| Class Libraries | [![Build status](https://ci.appveyor.com/api/projects/status/terbqvfdlw8po3cm?svg=true)](https://ci.appveyor.com/project/nfbot/nf-class-libraries) | |
+| Windows.Storage.Streams | [![Build status](https://ci.appveyor.com/api/projects/status/qlrp45glmyr6wru6?svg=true)](https://ci.appveyor.com/project/nfbot/lib-windows-storage-streams) | [![NuGet](https://img.shields.io/nuget/vpre/nanoFramework.Windows.Storage.Streams.svg)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/)  |
+| Windows.Storage.Streams (preview) | [![Build status](https://ci.appveyor.com/api/projects/status/qlrp45glmyr6wru6/branch/develop?svg=true)](https://ci.appveyor.com/project/nfbot/lib-windows-storage-streams/branch/develop) | [![MyGet Pre Release](https://img.shields.io/myget/nanoframework-dev/vpre/nanoFramework.Windows.Storage.Streams.svg)](https://www.myget.org/feed/nanoframework-dev/package/nuget/nanoFramework.Windows.Storage.Streams) |
 
 
 ## Feedback and documentation

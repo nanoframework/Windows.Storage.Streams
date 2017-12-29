@@ -11,11 +11,10 @@ namespace Windows.Storage.Streams
     /// <summary>
     /// 
     /// </summary>
-    public sealed class DataReader : IDisposable, IDataReader
+    public sealed class DataReader : MarshalByRefObject, IDisposable, IDataReader
     {
 
         private byte[] bufferData;
-        private Buffer buffer;
         private int currentPosition;
         private IInputStream stream;
 
@@ -76,15 +75,6 @@ namespace Windows.Storage.Streams
         }
 
         /// <summary>
-        /// Detaches a buffer that was previously attached to the reader.
-        /// </summary>
-        /// <returns>The detached buffer.</returns>
-        public IBuffer DetachBuffer()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Detaches a stream that was previously attached to the reader.
         /// </summary>
         /// <returns>The detached stream.</returns>
@@ -99,16 +89,6 @@ namespace Windows.Storage.Streams
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Creates a new instance of the data reader with data from the specified buffer.
-        /// </summary>
-        /// <param name="buffer">The buffer.</param>
-        /// <returns>The data reader.</returns>
-        public static DataReader FromBuffer(IBuffer buffer)
         {
             throw new NotImplementedException();
         }
@@ -137,8 +117,10 @@ namespace Windows.Storage.Streams
                 currentPosition = 0;
                 bufferData = byteArray;
             }
-            IBuffer buffer = stream.Read(SyncBuffer(), count, InputStreamOptions);
-            return (uint)bufferData.Length;
+            // FIXME
+            // IBuffer buffer = stream.Read(SyncBuffer(), count, InputStreamOptions);
+            // return (uint)bufferData.Length;
+            return 0;
         }
 
 
@@ -147,12 +129,7 @@ namespace Windows.Storage.Streams
         {
             bufferData = new byte[128];
             currentPosition = 0;
-            SyncBuffer();
-        }
-
-        private Buffer SyncBuffer()
-        {
-            throw new NotImplementedException();
+            //SyncBuffer();
         }
 
         private int IncreasePosition(int count)
@@ -165,9 +142,6 @@ namespace Windows.Storage.Streams
             currentPosition += count;
             return newPosition;
         }
-
-
-
 
         /// <summary>
         /// Reads a Boolean value from the input stream.
@@ -183,13 +157,14 @@ namespace Windows.Storage.Streams
         /// </summary>
         /// <param name="length">The length of the buffer, in bytes.</param>
         /// <returns>The buffer.</returns>
-        public IBuffer ReadBuffer(UInt32 length)
+        /// <remarks>
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: IBuffer ReadBuffer(UInt32 length).
+        /// </remarks>
+        public byte[] ReadBuffer(UInt32 length)
         {
-            //byte[] byteArray = new byte[length];
-            //ReadBytes(byteArray);
-            //return new Buffer(byteArray, 0, length);
-
-            throw new NotImplementedException();
+            byte[] byteArray = new byte[length];
+            ReadBytes(byteArray);
+            return byteArray;
         }
 
         /// <summary>

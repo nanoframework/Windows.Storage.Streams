@@ -16,6 +16,7 @@ namespace Windows.Storage.Streams
         /// <returns>The stream flush operation.</returns>
         /// <remarks>
         /// The Flush method may produce latencies and does not always guarantee durable and coherent storage of data. It's generally recommended to avoid this method if possible.
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: FlushAsync.
         /// </remarks>
         //IAsyncOperation<bool> FlushAsync()
         bool Flush();
@@ -23,10 +24,11 @@ namespace Windows.Storage.Streams
         /// <summary>
         /// Writes data in a sequential stream.
         /// </summary>
-        /// <param name="buffer">A buffer that contains the data to be written.</param>
-        /// <returns>The byte writer operation.</returns>
+        /// <param name="buffer">A byte array buffer that contains the data to be written.</param>
+        /// <remarks>
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteAsync(IBuffer buffer).
+        /// </remarks>
         //IAsyncOperationWithProgress<uint, uint> WriteAsync(IBuffer buffer)
-        uint Write(IBuffer buffer);
-
+        void Write(ref byte[] buffer);
     }
 }

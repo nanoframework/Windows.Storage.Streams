@@ -11,8 +11,12 @@ namespace Windows.Storage.Streams
     /// <summary>
     /// Writes data to an output stream.
     /// </summary>
-    public sealed class DataWriter : IDisposable, IDataWriter
+    public sealed class DataWriter : MarshalByRefObject, IDisposable, IDataWriter
     {
+        private IOutputStream _stream;
+        private bool _disposed;
+        private int _currentBufferPosition;
+
         /// <summary>
         /// Creates and initializes a new instance of the data writer.
         /// </summary>
@@ -27,7 +31,9 @@ namespace Windows.Storage.Streams
         /// <param name="outputStream">The new output stream instance.</param>
         public DataWriter(IOutputStream outputStream)
         {
-            throw new NotImplementedException();
+            _stream = outputStream ?? throw new ArgumentNullException();
+            _currentBufferPosition = 0;
+            _disposed = false;
         }
 
         /// <summary>
@@ -49,15 +55,6 @@ namespace Windows.Storage.Streams
         public uint UnstoredBufferLength { get; }
 
         /// <summary>
-        /// Detaches a buffer that was previously attached to the writer.
-        /// </summary>
-        /// <returns>The detached buffer.</returns>
-        public IBuffer DetachBuffer()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Detaches a stream that was previously attached to the writer.
         /// </summary>
         /// <returns>The detached stream.</returns>
@@ -66,26 +63,19 @@ namespace Windows.Storage.Streams
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Closes the current stream and releases system resources.
-        /// </summary>
-        /// <remarks>
-        /// DataWriter takes ownership of the stream that is passed to its constructor. Calling this method also calls on the associated stream. After calling this method, calls to most other DataWriter methods will fail.
-        /// If you do not want the associated stream to be closed when the reader closes, call DataWriter.DetachStream before calling this method.
-        /// </remarks>
-        public void Close()
-        {
-            // This member is not implemented in C#
-            throw new NotImplementedException();
-        }
+        ///// <summary>
+        ///// Closes the current stream and releases system resources.
+        ///// </summary>
+        ///// <remarks>
+        ///// DataWriter takes ownership of the stream that is passed to its constructor. Calling this method also calls on the associated stream. After calling this method, calls to most other DataWriter methods will fail.
+        ///// If you do not want the associated stream to be closed when the reader closes, call DataWriter.DetachStream before calling this method.
+        ///// </remarks>
+        //public void Close()
+        //{
+        //    // This member is not implemented in C#
+        //    throw new NotImplementedException();
+        //}
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Flushes data.
@@ -95,11 +85,31 @@ namespace Windows.Storage.Streams
         /// The Flush method ensures that the data has reached the target storage medium that the stream represents. For example, to improve application responsiveness and throughput, a file stream might respond to a write operation by copying the buffer into another temporary storage medium and returning immediately, while the target device begins writing the data concurrently.
         /// The Flush method doesn't complete until all data specified in previous write calls has reached the target storage medium. If the data can't be written, or an error occurred during a write operation, the method returns false.
         /// The Flush method may produce latencies and does not always guarantee durable and coherent storage of data.It's generally recommended to avoid this method if possible.
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: FlushAsync.
         /// </remarks>
         //public IAsyncOperation<bool> FlushAsync()
         public bool Flush()
         {
-            throw new NotImplementedException();
+            if (_disposed) throw new ObjectDisposedException();
+
+            if (_currentBufferPosition > 0)
+            {
+                try
+                {
+                    // FIXME
+                    //_stream.Write(_buffer, 0, _currentBufferPosition);
+                }
+                catch (Exception e)
+                {
+                    // FIXME
+                    //throw new IOException("StreamWriter Flush. ", e);
+                    return false;
+                }
+
+                _currentBufferPosition = 0;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -121,6 +131,9 @@ namespace Windows.Storage.Streams
         /// Commits data in the buffer to a backing store.
         /// </summary>
         /// <returns>The store data operation.</returns>
+        /// <remarks>
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: StoreAsync.
+        /// </remarks>
         // public DataWriterStoreOperation StoreAsync()
         public uint Store()
         {
@@ -140,9 +153,12 @@ namespace Windows.Storage.Streams
         /// Writes a number of bytes from a buffer to the output stream.
         /// </summary>
         /// <param name="buffer">The value to write.</param>
-        public void WriteBuffer(IBuffer buffer)
+        /// <remarks>
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteBuffer(IBuffer buffer).
+        /// </remarks>
+        public void WriteBuffer(byte[] buffer)
         {
-            throw new NotImplementedException();
+            WriteBytes(buffer);
         }
 
         /// <summary>
@@ -151,9 +167,15 @@ namespace Windows.Storage.Streams
         /// <param name="buffer">The buffer.</param>
         /// <param name="start">The starting byte to be written.</param>
         /// <param name="count">The number of bytes to write.</param>
-        public void WriteBuffer(IBuffer buffer, UInt32 start, UInt32 count)
+        /// <remarks>
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteBuffer(IBuffer buffer, UInt32 start, UInt32 count).
+        /// </remarks> 
+        public void WriteBuffer(byte[] buffer, UInt32 start, UInt32 count)
         {
-            throw new NotImplementedException();
+            byte[] copyBuffer = new byte[count];
+            Array.Copy(buffer, (int)start, copyBuffer, 0, (int)count);
+
+            WriteBytes(copyBuffer);
         }
 
         /// <summary>
@@ -162,7 +184,7 @@ namespace Windows.Storage.Streams
         /// <param name="value">The value to write.</param>
         public void WriteByte(Byte value)
         {
-            throw new NotImplementedException();
+            WriteBytes(new byte[] { value });
         }
 
         /// <summary>
@@ -171,7 +193,9 @@ namespace Windows.Storage.Streams
         /// <param name="value">The value to write.</param>
         public void WriteBytes(Byte[] value)
         {
-            throw new NotImplementedException();
+            if (_disposed) throw new ObjectDisposedException();
+
+            _stream.Write(ref value);
         }
 
         /// <summary>
@@ -288,5 +312,46 @@ namespace Windows.Storage.Streams
         {
             WriteBytes(BitConverter.GetBytes(value));
         }
+
+        #region IDisposable Support
+
+        void Dispose(bool disposing)
+        {
+            if (_stream != null)
+            {
+                if (disposing)
+                {
+                    try
+                    {
+                        Flush();
+                    }
+                    catch { }
+
+                    // FIXME
+                    //try
+                    //{
+                    //    _stream.Close();
+                    //}
+                    //catch { }
+                }
+
+                _stream = null;
+                _currentBufferPosition = 0;
+            }
+
+            _disposed = true;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

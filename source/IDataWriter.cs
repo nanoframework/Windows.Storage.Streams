@@ -31,12 +31,6 @@ namespace Windows.Storage.Streams
         uint UnstoredBufferLength { get; }
 
         /// <summary>
-        /// Detaches a buffer that was previously attached to the writer.
-        /// </summary>
-        /// <returns>The detached buffer.</returns>
-        IBuffer DetachBuffer();
-
-        /// <summary>
         /// Detaches a stream that was previously attached to the writer.
         /// </summary>
         /// <returns>The detached stream.</returns>
@@ -78,7 +72,10 @@ namespace Windows.Storage.Streams
         /// Writes a number of bytes from a buffer to the output stream.
         /// </summary>
         /// <param name="buffer">The value to write.</param>
-        void WriteBuffer(IBuffer buffer);
+        /// <remarks>
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteBuffer(IBuffer buffer).
+        /// </remarks>
+        void WriteBuffer(byte[] buffer);
 
         /// <summary>
         /// Writes a range of bytes from a buffer to the output stream.
@@ -86,7 +83,10 @@ namespace Windows.Storage.Streams
         /// <param name="buffer">The buffer.</param>
         /// <param name="start">The starting byte to be written.</param>
         /// <param name="count">The number of bytes to write.</param>
-        void WriteBuffer(IBuffer buffer, UInt32 start, UInt32 count);
+        /// <remarks>
+        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteBuffer(IBuffer buffer, UInt32 start, UInt32 count).
+        /// </remarks> 
+        void WriteBuffer(byte[] buffer, UInt32 start, UInt32 count);
 
         /// <summary>
         /// Writes a byte value to the output stream.
