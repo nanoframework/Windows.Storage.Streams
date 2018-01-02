@@ -29,6 +29,6 @@ namespace Windows.Storage.Streams
         /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteAsync(IBuffer buffer).
         /// </remarks>
         //IAsyncOperationWithProgress<uint, uint> WriteAsync(IBuffer buffer)
-        void Write(ref byte[] buffer);
+        void Write(byte[] buffer);
     }
 }
