@@ -162,7 +162,7 @@ namespace Windows.Storage.Streams
         /// <param name="buffer">A buffer that contains the data to be written.</param>
         /// <returns>The byte writer operation.</returns>
         /// <remarks>This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteAsync.</remarks>
-        public void Write(ref byte[] buffer)
+        public void Write(byte[] buffer)
         {
             if (!_isOpen)
             {

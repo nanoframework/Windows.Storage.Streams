@@ -202,7 +202,7 @@ namespace Windows.Storage.Streams
         {
             if (_disposed) throw new ObjectDisposedException();
 
-            _stream.Write(ref value);
+            _stream.Write(value);
         }
 
         /// <summary>
