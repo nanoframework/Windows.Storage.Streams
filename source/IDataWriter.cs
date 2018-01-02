@@ -16,13 +16,19 @@ namespace Windows.Storage.Streams
         /// Gets or sets the byte order of the data in the output stream.
         /// </summary>
         /// <value>One of the enumeration values.</value>
-        ByteOrder ByteOrder { get; set; }
+        /// <remarks>
+        /// nanoFramework doesn't this feature. ByteOrder is always <see cref="ByteOrder.LittleEndian"/>.
+        /// </remarks>
+        ByteOrder ByteOrder { get; }
 
         /// <summary>
         /// Gets or sets the Unicode character encoding for the output stream.
         /// </summary>
-        /// /// <value>One of the enumeration values.</value>
-        UnicodeEncoding UnicodeEncoding { get; set; }
+        /// <value>One of the enumeration values.</value>
+        /// <remarks>
+        /// nanoFramework doesn't this feature. UnicodeEncoding is always <see cref="UnicodeEncoding.Utf8"/>.
+        /// </remarks>
+        UnicodeEncoding UnicodeEncoding { get; }
 
         /// <summary>
         /// Gets the size of the buffer that has not been used.

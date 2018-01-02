@@ -16,6 +16,7 @@ namespace Windows.Storage.Streams
         private IOutputStream _stream;
         private bool _disposed;
         private int _currentBufferPosition;
+        private uint _unstoredBufferLength;
 
         /// <summary>
         /// Creates and initializes a new instance of the data writer.
@@ -40,19 +41,25 @@ namespace Windows.Storage.Streams
         /// Gets or sets the byte order of the data in the output stream.
         /// </summary>
         /// <value>One of the enumeration values.</value>
-        public ByteOrder ByteOrder { get; set; }
+        /// <remarks>
+        /// nanoFramework doesn't this feature. ByteOrder is always <see cref="ByteOrder.LittleEndian"/>.
+        /// </remarks>
+        public ByteOrder ByteOrder => ByteOrder.LittleEndian;
 
         /// <summary>
         /// Gets or sets the Unicode character encoding for the output stream.
         /// </summary>
-        /// /// <value>One of the enumeration values.</value>
-        public UnicodeEncoding UnicodeEncoding { get; set; }
+        /// <value>One of the enumeration values.</value>
+        /// <remarks>
+        /// nanoFramework doesn't this feature. UnicodeEncoding is always <see cref="UnicodeEncoding.Utf8"/>.
+        /// </remarks>
+        public UnicodeEncoding UnicodeEncoding => UnicodeEncoding.Utf8;
 
         /// <summary>
         /// Gets the size of the buffer that has not been used.
         /// </summary>
         /// <value>The available buffer length, in bytes.</value>
-        public uint UnstoredBufferLength { get; }
+        public uint UnstoredBufferLength => _unstoredBufferLength;
 
         /// <summary>
         /// Detaches a stream that was previously attached to the writer.

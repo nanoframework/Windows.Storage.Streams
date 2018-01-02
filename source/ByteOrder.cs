@@ -8,12 +8,9 @@ namespace Windows.Storage.Streams
     /// <summary>
     /// Specifies the byte order of a stream.
     /// </summary>
+    /// <remarks>nanoFramework API only supports LittleEndian order.</remarks>
     public enum ByteOrder
     {
-        /// <summary>
-        /// The most significant byte (highest address) is stored first.
-        /// </summary>
-        BigEndian,
         /// <summary>
         /// The least significant byte (lowest address) is stored first.
         /// </summary>
