@@ -18,7 +18,10 @@ namespace Windows.Storage.Streams
         /// <value>
         /// One of the enumeration values.
         /// </value>
-        ByteOrder ByteOrder { get; set; }
+        /// <remarks>
+        /// nanoFramework doesn't this feature. ByteOrder is always <see cref="ByteOrder.LittleEndian"/>.
+        /// </remarks>
+        ByteOrder ByteOrder { get; }
 
         /// <summary>
         /// Gets or sets the read options for the input stream.
@@ -42,7 +45,10 @@ namespace Windows.Storage.Streams
         /// <value>
         /// One of the enumeration values.
         /// </value>
-        UnicodeEncoding UnicodeEncoding { get; set; }
+        /// <remarks>
+        /// nanoFramework doesn't this feature. UnicodeEncoding is always <see cref="UnicodeEncoding.Utf8"/>.
+        /// </remarks>
+        UnicodeEncoding UnicodeEncoding { get; }
 
         /// <summary>
         /// Detaches a stream that was previously attached to the reader.

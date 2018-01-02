@@ -18,6 +18,9 @@ namespace Windows.Storage.Streams
         private int currentPosition;
         private IInputStream stream;
 
+        private InputStreamOptions _inputStreamOptions;
+        private uint _unconsumedBufferLength;
+
 
         /// <summary>
         /// Creates and initializes a new instance of the data reader.
@@ -35,7 +38,10 @@ namespace Windows.Storage.Streams
         /// <value>
         /// One of the enumeration values.
         /// </value>
-        public ByteOrder ByteOrder { get; set; }
+        /// <remarks>
+        /// nanoFramework doesn't this feature. ByteOrder is always <see cref="ByteOrder.LittleEndian"/>.
+        /// </remarks>
+        public ByteOrder ByteOrder => ByteOrder.LittleEndian;
 
         /// <summary>
         /// Gets or sets the read options for the input stream.
@@ -43,7 +49,7 @@ namespace Windows.Storage.Streams
         /// <value>
         /// One of the enumeration values.
         /// </value>
-        public InputStreamOptions InputStreamOptions { get; set; }
+        public InputStreamOptions InputStreamOptions { get { return _inputStreamOptions; } set => _inputStreamOptions = value; }
 
         /// <summary>
         /// Gets the size of the buffer that has not been read.
@@ -51,7 +57,7 @@ namespace Windows.Storage.Streams
         /// <value>
         /// The size of the buffer that has not been read, in bytes.
         /// </value>
-        public uint UnconsumedBufferLength { get; }
+        public uint UnconsumedBufferLength { get { return _unconsumedBufferLength; } }
 
         /// <summary>
         /// Gets or sets the Unicode character encoding for the input stream.
@@ -59,7 +65,10 @@ namespace Windows.Storage.Streams
         /// <value>
         /// One of the enumeration values.
         /// </value>
-        public UnicodeEncoding UnicodeEncoding { get; set; }
+        /// <remarks>
+        /// nanoFramework doesn't this feature. UnicodeEncoding is always <see cref="UnicodeEncoding.Utf8"/>.
+        /// </remarks>
+        public UnicodeEncoding UnicodeEncoding => UnicodeEncoding.Utf8;
 
         /// <summary>
         /// Closes the current stream and releases system resources.
