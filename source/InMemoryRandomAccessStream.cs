@@ -14,7 +14,6 @@ namespace Windows.Storage.Streams
     {
         private byte[] _buffer;
         private uint _capacity;     // length of usable portion of buffer for stream
-        private uint _origin;       // For user-provided arrays, start at this origin
         private uint _position;     // read/write head.
         private uint _length;       // Number of bytes within the memory stream
 
@@ -55,10 +54,26 @@ namespace Windows.Storage.Streams
             {
                 if (!_isOpen) throw new ObjectDisposedException();
 
-                return (ulong)(_position - _origin);
+                return (ulong)(_position);
             }
         }
 
+        /// <summary>
+        /// Gets the number of bytes currently in use in the buffer.
+        /// </summary>
+        /// <value>
+        /// he number of bytes currently in use in the buffer, which is less than or equal to the capacity of the buffer.
+        /// </value>
+        public ulong Length
+        {
+            get
+            {
+                if (!_isOpen) throw new ObjectDisposedException();
+
+                return _length;
+            }
+
+        }
 
         /// <summary>
         /// Gets or sets the size of the random access stream.
@@ -68,7 +83,12 @@ namespace Windows.Storage.Streams
         /// </value>
         public ulong Size
         {
-            get => (ulong)_capacity; 
+            get
+            {
+                if (!_isOpen) throw new ObjectDisposedException();
+
+                return _length;
+            }
 
             set
             {
@@ -82,16 +102,20 @@ namespace Windows.Storage.Streams
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (!(bool)EnsureCapacity(_origin + (uint)value) && _origin + (int)value > _length)
+                uint newLength = (uint)value;
+
+                bool allocatedNewArray = EnsureCapacity(newLength);
+
+                if (!allocatedNewArray && newLength > _length)
                 {
-                    Array.Clear(_buffer, (int)_length, (int)(_origin + value - _length));
+                    Array.Clear(_buffer, (int)_length, (int)(newLength - _length));
                 }
 
-                _length = _origin + (uint)value;
+                _length = newLength;
 
-                if (_position > _origin + value)
+                if (_position > newLength)
                 {
-                    _position = _origin + (uint)value;
+                    _position = newLength;
                 }
             }
         }
@@ -103,7 +127,6 @@ namespace Windows.Storage.Streams
         {
             _buffer = new byte[256];
             _capacity = 256;
-            _origin = 0;
             _isOpen = true;
         }
 
@@ -117,7 +140,25 @@ namespace Windows.Storage.Streams
         /// <remarks>This method is specific to nanoFramework. The equivalent method in the UWP API is: ReadAsync(IBuffer buffer, UInt32 count, InputStreamOptions options).</remarks>
         public uint Read(byte[] buffer, uint count, InputStreamOptions options)
         {
-            throw new NotImplementedException();
+            // how many bytes can we actually read?
+            if(count < (_length - _position))
+            {
+                // we have enough bytes to read
+                buffer = new byte[count];
+            }
+            else
+            {
+                // requested more bytes than what we have on the buffer
+                buffer = new byte[_length - _position];
+            }
+
+            // copy to destination array
+            Array.Copy(_buffer, (int)_position, buffer, 0, buffer.Length);
+
+            // update pointers
+            _position += (uint)buffer.Length;
+
+            return (uint) buffer.Length;
         }
 
 
@@ -140,7 +181,7 @@ namespace Windows.Storage.Streams
                 throw new ArgumentOutOfRangeException();
             }
 
-            _position = _origin + (uint)position;
+            _position = (uint)position;
         }
 
         /// <summary>
