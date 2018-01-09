@@ -144,7 +144,9 @@ namespace Windows.Storage.Streams
         // public DataWriterStoreOperation StoreAsync()
         public uint Store()
         {
-            throw new NotImplementedException();
+            var result = _stream.GetType().GetMethod("Store").Invoke(_stream, null);
+
+            return (uint)result;
         }
 
         /// <summary>
