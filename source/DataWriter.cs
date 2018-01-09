@@ -67,7 +67,9 @@ namespace Windows.Storage.Streams
         /// <returns>The detached stream.</returns>
         public IOutputStream DetachStream()
         {
-            throw new NotImplementedException();
+            IOutputStream outputStream = _stream;
+            _stream = null;
+            return outputStream;
         }
 
         ///// <summary>
