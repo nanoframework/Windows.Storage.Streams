@@ -118,12 +118,12 @@ namespace Windows.Storage.Streams
             }
 
             // create buffer to hold data read from stream 
-            var buffer = new byte[count];
+            var buffer = new ByteBuffer(count);
 
             var bytesRead = _stream.Read(buffer, count, _inputStreamOptions);
 
             // copy data from read buffer to backing buffer
-            Array.Copy(buffer, 0, _buffer.Data, (int)UnconsumedBufferLength, (int)bytesRead);
+            Array.Copy(buffer.Data, 0, _buffer.Data, (int)UnconsumedBufferLength, (int)bytesRead);
 
             // update counter
             _buffer.Length += bytesRead;

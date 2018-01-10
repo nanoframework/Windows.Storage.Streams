@@ -21,6 +21,6 @@ namespace Windows.Storage.Streams
         /// <returns>The number of bytes that were actually read.</returns>
         /// <remarks>This method is specific to nanoFramework. The equivalent method in the UWP API is: ReadAsync(IBuffer buffer, UInt32 count, InputStreamOptions options).</remarks>
         //IAsyncOperationWithProgress<IBuffer, uint> ReadAsync(IBuffer buffer, UInt32 count, InputStreamOptions options);
-        uint Read(byte[] buffer, UInt32 count, InputStreamOptions options);
+        uint Read(IBuffer buffer, UInt32 count, InputStreamOptions options);
     }
 }
