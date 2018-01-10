@@ -14,13 +14,13 @@ namespace Windows.Storage.Streams
     public sealed class DataReader : MarshalByRefObject, IDisposable, IDataReader
     {
         private IInputStream _stream;
+        private ByteBuffer _buffer;
+
         private bool _disposed;
-
-        private byte[] _bufferData;
-        private int _currentPosition;
-        private uint _unconsumedBufferLength;
-
+        private int _currentReadPosition;
         private InputStreamOptions _inputStreamOptions;
+
+        private const int defaultBufferSize = 512;
 
         /// <summary>
         /// Creates and initializes a new instance of the data reader.
@@ -31,7 +31,7 @@ namespace Windows.Storage.Streams
             _stream = inputStream ?? throw new ArgumentNullException("inputStream");
             _disposed = false;
 
-            ResetBufferData();
+            _buffer = new ByteBuffer(defaultBufferSize);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Windows.Storage.Streams
         /// <value>
         /// The size of the buffer that has not been read, in bytes.
         /// </value>
-        public uint UnconsumedBufferLength { get { return _unconsumedBufferLength; } }
+        public uint UnconsumedBufferLength { get { return (uint)(_buffer.Capacity - _buffer.Length); } }
 
         /// <summary>
         /// Gets or sets the Unicode character encoding for the input stream.
@@ -104,51 +104,31 @@ namespace Windows.Storage.Streams
         //public DataReaderLoadOperation LoadAsync(UInt32 count)
         public uint Load(UInt32 count)
         {
-            if (_stream == null)
+            // check the max number of bytes that the backing buffer can hold
+            if (count > (_buffer.Length - UnconsumedBufferLength))
             {
+                
                 throw new InvalidOperationException();
             }
 
-            // max number of bytes that this stream buffer can hold
-            var maxLength = (int)(_bufferData.Length - _unconsumedBufferLength);
-
-            // check for buffer full
-            if(maxLength == 0)
+            // check for (dumb!) 0 bytes request
+            if(count == 0)
             {
                 return 0;
             }
 
-            // create buffer to hold data from stream 
-            byte[] buffer = new byte[maxLength];
+            // create buffer to hold data read from stream 
+            var buffer = new byte[count];
 
-            var bytesRead = _stream.Read(buffer, (uint)maxLength, _inputStreamOptions);
+            var bytesRead = _stream.Read(buffer, count, _inputStreamOptions);
 
-            // copy data from read buffer
-            Array.Copy(buffer, 0, _bufferData, (int)_unconsumedBufferLength, (int)bytesRead);
+            // copy data from read buffer to backing buffer
+            Array.Copy(buffer, 0, _buffer.Data, (int)UnconsumedBufferLength, (int)bytesRead);
 
             // update counter
-            _unconsumedBufferLength += bytesRead;
+            _buffer.Length += bytesRead;
 
             return bytesRead;
-        }
-
-        private void ResetBufferData()
-        {
-            _bufferData = new byte[256];
-            _currentPosition = 0;
-            //SyncBuffer();
-        }
-
-        private int IncreasePosition(int count)
-        {
-            if (_unconsumedBufferLength < count)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            int newPosition = _currentPosition;
-            _currentPosition += count;
-            return newPosition;
         }
 
         /// <summary>
@@ -157,7 +137,11 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public bool ReadBoolean()
         {
-            return _bufferData[IncreasePosition(1)] > 0;
+            var value = _buffer.Data[IncreaseReadPosition(1)] > 0;
+
+            CheckReadPosition();
+
+            return value;
         }
 
         /// <summary>
@@ -165,14 +149,15 @@ namespace Windows.Storage.Streams
         /// </summary>
         /// <param name="length">The length of the buffer, in bytes.</param>
         /// <returns>The buffer.</returns>
-        /// <remarks>
-        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: IBuffer ReadBuffer(UInt32 length).
-        /// </remarks>
-        public byte[] ReadBuffer(UInt32 length)
+        public IBuffer ReadBuffer(UInt32 length)
         {
-            byte[] byteArray = new byte[length];
-            ReadBytes(byteArray);
-            return byteArray;
+            ByteBuffer buffer = new ByteBuffer(length);
+
+            Array.Copy(_buffer.Data, IncreaseReadPosition((int)length), buffer.Data, 0, (int)length);
+
+            CheckReadPosition();
+
+            return buffer;
         }
 
         /// <summary>
@@ -181,8 +166,12 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public byte ReadByte()
         {
-            return _bufferData[IncreasePosition(1)];
-    }
+            var value = _buffer.Data[IncreaseReadPosition(1)];
+
+            CheckReadPosition();
+
+            return value;
+        }
 
         /// <summary>
         /// Reads an array of byte values from the input stream.
@@ -192,10 +181,12 @@ namespace Windows.Storage.Streams
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException();
             }
 
-            Array.Copy(_bufferData, IncreasePosition(value.Length), value, 0, value.Length);
+            Array.Copy(_buffer.Data, IncreaseReadPosition(value.Length), value, 0, value.Length);
+
+            CheckReadPosition();
         }
 
         /// <summary>
@@ -204,6 +195,7 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public DateTime ReadDateTime()
         {
+            // read position update and check are performed on the call
             return new DateTime(ReadInt64());
         }
 
@@ -213,7 +205,11 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public double ReadDouble()
         {
-            return BitConverter.ToDouble(_bufferData, IncreasePosition(8));
+            var value = BitConverter.ToDouble(_buffer.Data, IncreaseReadPosition(8));
+
+            CheckReadPosition();
+
+            return value;
         }
 
         /// <summary>
@@ -223,7 +219,10 @@ namespace Windows.Storage.Streams
         public Guid ReadGuid()
         {
             byte[] byteArray = new byte[16];
+
+            // read position update and check are performed on the call
             ReadBytes(byteArray);
+
             return new Guid(byteArray);
         }
 
@@ -233,7 +232,11 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public short ReadInt16()
         {
-            return BitConverter.ToInt16(_bufferData, IncreasePosition(2));
+            var value = BitConverter.ToInt16(_buffer.Data, IncreaseReadPosition(2));
+
+            CheckReadPosition();
+
+            return value;
         }
 
         /// <summary>
@@ -242,8 +245,12 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public int ReadInt32()
         {
-            return BitConverter.ToInt32(_bufferData, IncreasePosition(4));
-    }
+            var value = BitConverter.ToInt32(_buffer.Data, IncreaseReadPosition(4));
+
+            CheckReadPosition();
+
+            return value;
+        }
 
         /// <summary>
         /// Reads a 64-bit integer value from the input stream.
@@ -251,7 +258,11 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public long ReadInt64()
         {
-            return BitConverter.ToInt64(_bufferData, IncreasePosition(8));
+            var value = BitConverter.ToInt64(_buffer.Data, IncreaseReadPosition(8));
+
+            CheckReadPosition();
+
+            return value;
         }
 
         /// <summary>
@@ -260,7 +271,11 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public float ReadSingle()
         {
-            return BitConverter.ToSingle(_bufferData, IncreasePosition(4));
+            var value = BitConverter.ToSingle(_buffer.Data, IncreaseReadPosition(4));
+
+            CheckReadPosition();
+
+            return value;
         }
 
         /// <summary>
@@ -270,7 +285,11 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public string ReadString(UInt32 codeUnitCount)
         {
-            return new string(Encoding.UTF8.GetChars(_bufferData, IncreasePosition((int)codeUnitCount), (int)codeUnitCount));
+            var value = new string(Encoding.UTF8.GetChars(_buffer.Data, IncreaseReadPosition((int)codeUnitCount), (int)codeUnitCount));
+
+            CheckReadPosition();
+
+            return value;
         }
 
         /// <summary>
@@ -279,8 +298,9 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public TimeSpan ReadTimeSpan()
         {
+            // read position update and check are performed on the call
             return new TimeSpan(ReadInt64());
-    }
+        }
 
         /// <summary>
         /// Reads a 16-bit unsigned integer from the input stream.
@@ -288,7 +308,11 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public ushort ReadUInt16()
         {
-            return BitConverter.ToUInt16(_bufferData, IncreasePosition(2));
+            var value = BitConverter.ToUInt16(_buffer.Data, IncreaseReadPosition(2));
+
+            CheckReadPosition();
+
+            return value;
         }
 
         /// <summary>
@@ -297,7 +321,11 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public uint ReadUInt32()
         {
-            return BitConverter.ToUInt32(_bufferData, IncreasePosition(4));
+            var value = BitConverter.ToUInt32(_buffer.Data, IncreaseReadPosition(4));
+
+            CheckReadPosition();
+
+            return value;
         }
 
         /// <summary>
@@ -306,30 +334,83 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public ulong ReadUInt64()
         {
-            return BitConverter.ToUInt64(_bufferData, IncreasePosition(8));
+            var value = BitConverter.ToUInt64(_buffer.Data, IncreaseReadPosition(8));
+
+            CheckReadPosition();
+
+            return value;
         }
 
+        /// <summary>
+        /// Increases the backing buffer read position.
+        /// </summary>
+        /// <param name="count">How many bytes to read from the backing buffer.</param>
+        /// <returns>
+        /// The current buffer position before increasing it by <para>count</para>.
+        /// </returns>
+        private int IncreaseReadPosition(int count)
+        {
+            if (UnconsumedBufferLength < count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            // save current read position
+            int newPosition = _currentReadPosition;
+
+            // increase by count request
+            _currentReadPosition += count;
+
+            return newPosition;
+        }
+
+        /// <summary>
+        /// Checks current read position and resets the backing buffer if all bytes have been read
+        /// </summary>
+        private void CheckReadPosition()
+        {
+            if (_currentReadPosition == _buffer.Length)
+            {
+                _buffer = new ByteBuffer(defaultBufferSize);
+                _currentReadPosition = 0;
+            }
+        }
+
+        /// <summary>
+        /// Throws an <see cref="InvalidOperationException"/> if caller tries to read more bytes than the ones that are available in backing buffer.
+        /// </summary>
+        /// <param name="count">Number of bytes to be read</param>
+        private void CheckAvailableBytes(int count)
+        {
+            if (count > (_buffer.Length - _currentReadPosition))
+            {
+                throw new InvalidOperationException();
+            }
+        }
 
         #region IDisposable Support
 
         void Dispose(bool disposing)
         {
-            if (_stream != null)
+            if (_disposed)
             {
-                if (disposing)
+                if (_stream != null)
                 {
-                    // FIXME
-                    //try
-                    //{
-                    //    _stream.Close();
-                    //}
-                    //catch { }
+                    if (disposing)
+                    {
+                        // FIXME
+                        //try
+                        //{
+                        //    _stream.Close();
+                        //}
+                        //catch { }
+                    }
+
+                    _stream = null;
                 }
 
-                _stream = null;
+                _disposed = true;
             }
-
-            _disposed = true;
         }
 
         /// <summary>
