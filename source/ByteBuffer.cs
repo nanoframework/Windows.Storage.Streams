@@ -10,7 +10,7 @@ namespace Windows.Storage.Streams
     /// <summary>
     /// Provides a byte array implementation of the IBuffer interface and its related interfaces.
     /// </summary>
-    public sealed class ByteBuffer : IBuffer
+    internal sealed class ByteBuffer : IBuffer
     {
         private byte[] _buffer;
         private uint _length;
