@@ -138,25 +138,28 @@ namespace Windows.Storage.Streams
         /// <param name="options">Specifies the type of the asynchronous read operation.</param>
         /// <returns>The number of bytes that were actually read.</returns>
         /// <remarks>This method is specific to nanoFramework. The equivalent method in the UWP API is: ReadAsync(IBuffer buffer, UInt32 count, InputStreamOptions options).</remarks>
-        public uint Read(byte[] buffer, uint count, InputStreamOptions options)
+        public uint Read(IBuffer buffer, uint count, InputStreamOptions options)
         {
+            var size = count;
+
             // how many bytes can we actually read?
             if(count < (_length - _position))
             {
                 // we have enough bytes to read
-                buffer = new byte[count];
             }
             else
             {
                 // requested more bytes than what we have on the buffer
-                buffer = new byte[_length - _position];
+                size = _length - _position;
             }
+            buffer = new ByteBuffer(count);
 
             // copy to destination array
-            Array.Copy(_buffer, (int)_position, buffer, 0, buffer.Length);
+            Array.Copy(_buffer, (int)_position, ((ByteBuffer)buffer).Data, 0, (int)size);
+            ((ByteBuffer)buffer).Length += size;
 
             // update pointers
-            _position += (uint)buffer.Length;
+            _position += buffer.Length;
 
             return (uint) buffer.Length;
         }
