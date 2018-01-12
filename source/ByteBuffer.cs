@@ -55,10 +55,10 @@ namespace Windows.Storage.Streams
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="byte[]"/> backing this <see cref="ByteBuffer"/>.
+        /// Gets or sets the byte array backing this <see cref="ByteBuffer"/>.
         /// </summary>
         /// <value>
-        /// The <see cref="byte[]"/> backing this <see cref="ByteBuffer"/>.
+        /// The byte array backing this <see cref="ByteBuffer"/>.
         /// </value>
         public byte[] Data
         {
