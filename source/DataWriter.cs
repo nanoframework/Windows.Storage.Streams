@@ -60,9 +60,8 @@ namespace Windows.Storage.Streams
         {
             get
             {
-                var result = _stream.GetType().GetField("UnstoredBufferLength").GetValue(_stream);
-
-                return (uint)result;
+                // need to use reflection to reach the field value
+                return (uint)_stream.GetType().GetField("_unstoredBufferLength", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(_stream);
             }
         }
 
