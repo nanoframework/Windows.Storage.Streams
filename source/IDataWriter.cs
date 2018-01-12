@@ -78,10 +78,7 @@ namespace Windows.Storage.Streams
         /// Writes a number of bytes from a buffer to the output stream.
         /// </summary>
         /// <param name="buffer">The value to write.</param>
-        /// <remarks>
-        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteBuffer(IBuffer buffer).
-        /// </remarks>
-        void WriteBuffer(byte[] buffer);
+        void WriteBuffer(IBuffer buffer);
 
         /// <summary>
         /// Writes a range of bytes from a buffer to the output stream.
@@ -89,10 +86,7 @@ namespace Windows.Storage.Streams
         /// <param name="buffer">The buffer.</param>
         /// <param name="start">The starting byte to be written.</param>
         /// <param name="count">The number of bytes to write.</param>
-        /// <remarks>
-        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteBuffer(IBuffer buffer, UInt32 start, UInt32 count).
-        /// </remarks> 
-        void WriteBuffer(byte[] buffer, UInt32 start, UInt32 count);
+        void WriteBuffer(IBuffer buffer, UInt32 start, UInt32 count);
 
         /// <summary>
         /// Writes a byte value to the output stream.

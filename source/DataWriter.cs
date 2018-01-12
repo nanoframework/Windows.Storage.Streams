@@ -15,8 +15,6 @@ namespace Windows.Storage.Streams
     {
         private IOutputStream _stream;
         private bool _disposed;
-        private int _currentBufferPosition;
-        private uint _unstoredBufferLength;
 
         /// <summary>
         /// Creates and initializes a new instance of the data writer.
@@ -33,7 +31,6 @@ namespace Windows.Storage.Streams
         public DataWriter(IOutputStream outputStream)
         {
             _stream = outputStream ?? throw new ArgumentNullException();
-            _currentBufferPosition = 0;
             _disposed = false;
         }
 
@@ -59,7 +56,15 @@ namespace Windows.Storage.Streams
         /// Gets the size of the buffer that has not been used.
         /// </summary>
         /// <value>The available buffer length, in bytes.</value>
-        public uint UnstoredBufferLength => _unstoredBufferLength;
+        public uint UnstoredBufferLength
+        {
+            get
+            {
+                var result = _stream.GetType().GetField("UnstoredBufferLength").GetValue(_stream);
+
+                return (uint)result;
+            }
+        }
 
         /// <summary>
         /// Detaches a stream that was previously attached to the writer.
@@ -101,22 +106,7 @@ namespace Windows.Storage.Streams
         {
             if (_disposed) throw new ObjectDisposedException();
 
-            if (_currentBufferPosition > 0)
-            {
-                try
-                {
-                    // FIXME
-                    //_stream.Write(_buffer, 0, _currentBufferPosition);
-                }
-                catch (Exception e)
-                {
-                    // FIXME
-                    //throw new IOException("StreamWriter Flush. ", e);
-                    return false;
-                }
-
-                _currentBufferPosition = 0;
-            }
+            Store();
 
             return true;
         }
@@ -164,12 +154,9 @@ namespace Windows.Storage.Streams
         /// Writes a number of bytes from a buffer to the output stream.
         /// </summary>
         /// <param name="buffer">The value to write.</param>
-        /// <remarks>
-        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteBuffer(IBuffer buffer).
-        /// </remarks>
-        public void WriteBuffer(byte[] buffer)
+        public void WriteBuffer(IBuffer buffer)
         {
-            WriteBytes(buffer);
+            WriteBuffer(buffer);
         }
 
         /// <summary>
@@ -178,13 +165,10 @@ namespace Windows.Storage.Streams
         /// <param name="buffer">The buffer.</param>
         /// <param name="start">The starting byte to be written.</param>
         /// <param name="count">The number of bytes to write.</param>
-        /// <remarks>
-        /// This method is specific to nanoFramework. The equivalent method in the UWP API is: WriteBuffer(IBuffer buffer, UInt32 start, UInt32 count).
-        /// </remarks> 
-        public void WriteBuffer(byte[] buffer, UInt32 start, UInt32 count)
+        public void WriteBuffer(IBuffer buffer, UInt32 start, UInt32 count)
         {
             byte[] copyBuffer = new byte[count];
-            Array.Copy(buffer, (int)start, copyBuffer, 0, (int)count);
+            Array.Copy(((ByteBuffer)buffer).Data, (int)start, copyBuffer, 0, (int)count);
 
             WriteBytes(copyBuffer);
         }
@@ -347,7 +331,6 @@ namespace Windows.Storage.Streams
                 }
 
                 _stream = null;
-                _currentBufferPosition = 0;
             }
 
             _disposed = true;

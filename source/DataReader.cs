@@ -59,7 +59,7 @@ namespace Windows.Storage.Streams
         /// <value>
         /// The size of the buffer that has not been read, in bytes.
         /// </value>
-        public uint UnconsumedBufferLength { get { return (uint)(_buffer.Capacity - _buffer.Length); } }
+        public uint UnconsumedBufferLength { get { return (_buffer.Length - (uint)_currentReadPosition); } }
 
         /// <summary>
         /// Gets or sets the Unicode character encoding for the input stream.
@@ -105,7 +105,7 @@ namespace Windows.Storage.Streams
         public uint Load(UInt32 count)
         {
             // check the max number of bytes that the backing buffer can hold
-            if (count > (_buffer.Length - UnconsumedBufferLength))
+            if (count > (_buffer.Capacity - _buffer.Length))
             {
                 
                 throw new InvalidOperationException();
@@ -118,12 +118,12 @@ namespace Windows.Storage.Streams
             }
 
             // create buffer to hold data read from stream 
-            var buffer = new ByteBuffer(count);
+            var readBuffer = new ByteBuffer(count);
 
-            var bytesRead = _stream.Read(buffer, count, _inputStreamOptions);
+            var bytesRead = _stream.Read(readBuffer, count, _inputStreamOptions);
 
             // copy data from read buffer to backing buffer
-            Array.Copy(buffer.Data, 0, _buffer.Data, (int)UnconsumedBufferLength, (int)bytesRead);
+            Array.Copy(readBuffer.Data, 0, _buffer.Data, (int)_buffer.Length, (int)bytesRead);
 
             // update counter
             _buffer.Length += bytesRead;
