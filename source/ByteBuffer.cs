@@ -5,6 +5,8 @@
 
 using System;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Windows.Devices.SerialCommunication")]
+
 namespace Windows.Storage.Streams
 {
     /// <summary>
@@ -13,7 +15,7 @@ namespace Windows.Storage.Streams
     /// <remarks>
     /// This class is intended for internal use of nanoFramework classes. The developer shouldn't use it directly.
     /// </remarks>
-    public sealed class ByteBuffer : IBuffer
+    internal sealed class ByteBuffer : IBuffer
     {
         private byte[] _buffer;
         private uint _length;
