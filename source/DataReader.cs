@@ -73,19 +73,6 @@ namespace Windows.Storage.Streams
         public UnicodeEncoding UnicodeEncoding => UnicodeEncoding.Utf8;
 
         /// <summary>
-        /// Closes the current stream and releases system resources.
-        /// </summary>
-        /// <remarks>
-        /// DataReader takes ownership of the stream that is passed to its constructor. Calling this method also calls on the associated stream. After calling this method, calls to most other DataReader methods will fail.
-        /// If you do not want the associated stream to be closed when the reader closes, call DataReader.DetachStream before calling this method.
-        /// </remarks>
-        public void Close()
-        {
-            // This member is not implemented in C#
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Detaches a stream that was previously attached to the reader.
         /// </summary>
         /// <returns>The detached stream.</returns>
@@ -285,7 +272,9 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public string ReadString(UInt32 codeUnitCount)
         {
-            var value = new string(Encoding.UTF8.GetChars(_buffer.Data, IncreaseReadPosition((int)codeUnitCount), (int)codeUnitCount));
+            var chars = new Char[_buffer.Data.Length];
+            Encoding.UTF8.GetDecoder().Convert(_buffer.Data, 0, _buffer.Data.Length, chars, 0, _buffer.Data.Length, false, out Int32 bytesUsed, out Int32 charsUsed, out Boolean completed);
+            var value = new String(chars, 0, charsUsed);
 
             CheckReadPosition();
 
