@@ -272,9 +272,12 @@ namespace Windows.Storage.Streams
         /// <returns>The value.</returns>
         public string ReadString(UInt32 codeUnitCount)
         {
-            var chars = new Char[_buffer.Data.Length];
-            Encoding.UTF8.GetDecoder().Convert(_buffer.Data, 0, IncreaseReadPosition(_buffer.Data.Length), chars, 0, _buffer.Data.Length, false, out Int32 bytesUsed, out Int32 charsUsed, out Boolean completed);
-            var value = new String(chars, 0, charsUsed);
+            Char[] buffer = new Char[codeUnitCount];
+
+            int readPosition = IncreaseReadPosition((int)codeUnitCount);
+
+            Encoding.UTF8.GetDecoder().Convert(_buffer.Data, readPosition, (int)codeUnitCount, buffer, 0, (int)codeUnitCount, false, out Int32 bytesUsed, out Int32 charsUsed, out Boolean completed);
+            var value = new String(buffer, 0, charsUsed);
 
             CheckReadPosition();
 
