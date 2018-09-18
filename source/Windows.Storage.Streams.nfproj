@@ -19,7 +19,13 @@
     <DocumentationFile>bin\$(Configuration)\Windows.Storage.Streams.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <PropertyGroup>
     <!-- override default options for MetaDataProcessor -->
@@ -49,6 +55,7 @@
     <Compile Include="ByteOrder.cs" />
     <Compile Include="DataReader.cs" />
     <Compile Include="DataWriter.cs" />
+    <Compile Include="Friends.cs" />
     <Compile Include="IBuffer.cs" />
     <Compile Include="IDataReader.cs" />
     <Compile Include="IDataWriter.cs" />
