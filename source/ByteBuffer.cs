@@ -5,9 +5,6 @@
 
 using System;
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Windows.Devices.SerialCommunication")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Windows.Networking.Sockets")]
-
 namespace Windows.Storage.Streams
 {
     /// <summary>
