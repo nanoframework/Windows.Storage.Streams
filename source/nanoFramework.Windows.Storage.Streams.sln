@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "Windows.Storage.Streams", "Windows.Storage.Streams.nfproj", "{05895B03-993A-45C0-A2C7-E347B3023DD0}"
+Project("{11A8DD76-328B-46DF-9F39-F559912D0360}") = "Windows.Storage.Streams", "Windows.Storage.Streams\Windows.Storage.Streams.nfproj", "{05895B03-993A-45C0-A2C7-E347B3023DD0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5233031F-90D2-45D8-8DEB-DACA9F43887F}"
-	ProjectSection(SolutionItems) = preProject
-		packages.config = packages.config
+Project("{FF286327-C783-4F7A-AB73-9BCBAD0D4460}") = "Nuget.Windows.Storage.Streams", "Nuget.Windows.Storage.Streams\Nuget.Windows.Storage.Streams.nuproj", "{43CD93BB-C6C4-4F8E-B1ED-406469D9DB42}"
+	ProjectSection(ProjectDependencies) = postProject
+		{05895B03-993A-45C0-A2C7-E347B3023DD0} = {05895B03-993A-45C0-A2C7-E347B3023DD0}
+	EndProjectSection
+EndProject
+Project("{FF286327-C783-4F7A-AB73-9BCBAD0D4460}") = "Nuget.Windows.Storage.Streams.DELIVERABLES", "Nuget.Windows.Storage.Streams.DELIVERABLES\Nuget.Windows.Storage.Streams.DELIVERABLES.nuproj", "{5A4C97FD-F7EA-4A59-8D7F-42EBC1A6D449}"
+	ProjectSection(ProjectDependencies) = postProject
+		{05895B03-993A-45C0-A2C7-E347B3023DD0} = {05895B03-993A-45C0-A2C7-E347B3023DD0}
 	EndProjectSection
 EndProject
 Global
@@ -20,6 +25,14 @@ Global
 		{05895B03-993A-45C0-A2C7-E347B3023DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05895B03-993A-45C0-A2C7-E347B3023DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05895B03-993A-45C0-A2C7-E347B3023DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43CD93BB-C6C4-4F8E-B1ED-406469D9DB42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CD93BB-C6C4-4F8E-B1ED-406469D9DB42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CD93BB-C6C4-4F8E-B1ED-406469D9DB42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CD93BB-C6C4-4F8E-B1ED-406469D9DB42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A4C97FD-F7EA-4A59-8D7F-42EBC1A6D449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4C97FD-F7EA-4A59-8D7F-42EBC1A6D449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4C97FD-F7EA-4A59-8D7F-42EBC1A6D449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4C97FD-F7EA-4A59-8D7F-42EBC1A6D449}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
