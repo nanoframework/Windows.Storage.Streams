@@ -26,6 +26,7 @@
 
 **Documentation and other chores:**
 
+- Update mscorlib NuGet [\#29](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/29)
 - Bump nanoFramework.CoreLibrary from 1.0.0-preview062 to 1.0.0-preview073 in /source [\#24](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/24)
 - Update DataReader.cs [\#15](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/15)
 - Merge Windows.Storage.Streams from WIP branch to master [\#1](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/1)
