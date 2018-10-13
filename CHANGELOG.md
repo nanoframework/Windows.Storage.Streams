@@ -26,6 +26,8 @@
 
 **Documentation and other chores:**
 
+- Bumps nanoFramework.CoreLibrary from 1.0.1-preview127 to 1.0.1-preview134 [\#34](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/34)
+- Bumps nanoFramework.CoreLibrary from 1.0.1-preview123 to 1.0.1-preview127 [\#33](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/33)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview118 to 1.0.1-preview123 [\#31](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/31)
 - Update mscorlib NuGet [\#29](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/29)
 - Bump nanoFramework.CoreLibrary from 1.0.0-preview062 to 1.0.0-preview073 in /source [\#24](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/24)
