@@ -10,28 +10,36 @@
       <Platform>AnyCPU</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <PropertyGroup>
+    <GitVersion_NuGetVersionV2 Condition=" '$(GitVersion_NuGetVersionV2)' == '' ">1.0.0-preview001</GitVersion_NuGetVersionV2>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="content\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\bin\$(Configuration)\Stubs\*.*">
+    <Content Include="..\Windows.Storage.Streams\bin\$(Configuration)\Stubs\*.*">
       <Link>content\Stubs\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
-    <Content Include="..\bin\$(Configuration)\*.txt">
+    <Content Include="..\Windows.Storage.Streams\bin\$(Configuration)\*.txt">
       <Link>content\txt\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
-    <Content Include="..\bin\$(Configuration)\*.dump">
+    <Content Include="..\Windows.Storage.Streams\bin\$(Configuration)\*.dump">
       <Link>content\dump\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
-    <Content Include="..\bin\$(Configuration)\*.strings">
+    <Content Include="..\Windows.Storage.Streams\bin\$(Configuration)\*.strings">
       <Link>content\dump\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
-    <Content Include="..\bin\$(Configuration)\*.resources">
+    <Content Include="..\Windows.Storage.Streams\bin\$(Configuration)\*.resources">
       <Link>content\resources\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
-    <Content Include="..\bin\$(Configuration)\*.il">
+    <Content Include="..\Windows.Storage.Streams\bin\$(Configuration)\*.il">
       <Link>content\disasm\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Dependency Include="nanoFramework.CoreLibrary">
+      <Version>[1.0.4]</Version>
+    </Dependency>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>5a4c97fd-f7ea-4a59-8d7f-42ebc1a6d449</ProjectGuid>
@@ -42,7 +50,7 @@
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
     <Id>nanoFramework.Windows.Storage.Streams.DELIVERABLES</Id>
-    <Version>1.0.0-preview001</Version>
+    <Version>$(GitVersion_NuGetVersionV2)</Version>
     <Title>nanoFramework.Windows.Storage.Streams.DELIVERABLES</Title>
     <Authors>nanoFramework project contributors</Authors>
     <Owners>nanoFramework project contributors</Owners>
@@ -50,7 +58,7 @@
     <Description>** DON'T REFERENCE THIS PACKAGE ** Not meant for development. This package includes the deliverable artifacts of the Windows.Storage.Streams assembly for nanoFramework. These are for testing purposes and for updating the native code base of the core library.</Description>
     <ReleaseNotes>
     </ReleaseNotes>
-    <ProjectUrl>https://github.com/nanoframework/nf-class-libraries</ProjectUrl>
+    <ProjectUrl>https://github.com/nanoframework/lib-Windows.Storage.Streams</ProjectUrl>
     <LicenseUrl>
     </LicenseUrl>
     <Copyright>Copyright (c) 2017 The nanoFramework project contributors</Copyright>
