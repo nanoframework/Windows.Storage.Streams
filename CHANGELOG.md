@@ -2,6 +2,14 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/HEAD)
 
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.0...HEAD)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.0.5-preview024 to 1.0.5-preview024 [\#42](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/42)
+- merge back changes from Release 1.0.0 branch [\#38](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/38)
+
+## [v1.0.0](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.0) (2018-10-17)
 **Implemented enhancements:**
 
 - Add strong key name signing [\#25](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/25)
@@ -26,6 +34,8 @@
 
 **Documentation and other chores:**
 
+- Merge 'develop' for Release 1.0.0 [\#37](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/37)
+- Bumps nanoFramework.CoreLibrary from 1.0.1-preview134 to 1.0.4 [\#36](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/36)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview127 to 1.0.1-preview134 [\#34](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/34)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview123 to 1.0.1-preview127 [\#33](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/33)
 - Bumps nanoFramework.CoreLibrary from 1.0.1-preview118 to 1.0.1-preview123 [\#31](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/31)
