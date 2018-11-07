@@ -33,7 +33,7 @@ else
         $newBranchName = "$env:APPVEYOR_REPO_BRANCH-nfbot/update-dependencies"
     
         "Updating $library" | Write-Host -ForegroundColor White
-   
+    
         # make sure we are in the projects directory
         &  cd "C:\projects" > $null
 
@@ -46,40 +46,40 @@ else
         # find solution file in repository
         $solutionFile = (Get-ChildItem -Path ".\" -Include "*.sln" -Recurse)
 
-       # find packages.config
-       $packagesConfig = (Get-ChildItem -Path ".\" -Include "packages.config" -Recurse)
+        # find packages.config
+        $packagesConfig = (Get-ChildItem -Path ".\" -Include "packages.config" -Recurse)
 
-       # load packages.config as XML doc
-       [xml]$packagesDoc = Get-Content $packagesConfig
+        # load packages.config as XML doc
+        [xml]$packagesDoc = Get-Content $packagesConfig
 
-       $nodes = $packagesDoc.SelectNodes("*").SelectNodes("*")
+        $nodes = $packagesDoc.SelectNodes("*").SelectNodes("*")
 
-       $packageList = @(,@())
+        $packageList = @(,@())
 
-       foreach ($node in $nodes)
-       {
-           # filter out NuProj packages
-           if($node.id -notlike "NuProj*")
-           {
-               if($packageList)
-               {
-                   $packageList += , ($node.id,  $node.version)
-               }
-               else
-               {
-                   $packageList = , ($node.id,  $node.version)
-               }
-           }
-       }
+        foreach ($node in $nodes)
+        {
+            # filter out Nerdbank.GitVersioning package
+            if($node.id -notlike "Nerdbank.GitVersioning*")
+            {
+                if($packageList)
+                {
+                    $packageList += , ($node.id,  $node.version)
+                }
+                else
+                {
+                    $packageList = , ($node.id,  $node.version)
+                }
+            }
+        }
 
-       if ($packageList.length -gt 0)
-       {
-           "NuGet packages to update:" | Write-Host -ForegroundColor White
-           $packageList | Write-Host -ForegroundColor White
+        if ($packageList.length -gt 0)
+        {
+            "NuGet packages to update:" | Write-Host -ForegroundColor White
+            $packageList | Write-Host -ForegroundColor White
 
             # restore NuGet packages, need to do this before anything else
             nuget restore $solutionFile[0] -Source https://www.myget.org/F/nanoframework-dev/api/v3/index.json -Source https://api.nuget.org/v3/index.json                
-    
+
             # rename nfproj files to csproj
             Get-ChildItem -Path ".\" -Include "*.nfproj" -Recurse |
                 Foreach-object {
@@ -130,32 +130,36 @@ else
                 attrib $projectPath -r
                 $filecontent -replace "($packageName.$packageOriginVersion)", "$packageName.$packageTargetVersion" | Out-File $projectPath -Encoding utf8
 
-                # update nuproj files, if any
-                $nuprojFiles = (Get-ChildItem -Path ".\" -Include "*.nuproj" -Recurse)
+                # update nuspec files, if any
+                $nuspecFiles = (Get-ChildItem -Path ".\" -Include "*.nuspec" -Recurse)
 
-                foreach ($nuproj in $nuprojFiles)
+                foreach ($nuspec in $nuspecFiles)
                 {
-                    [xml]$nuprojDoc = Get-Content $nuproj
+                    [xml]$nuspecDoc = Get-Content $nuspec
 
-                    #$nuprojDoc.Project.ItemGroup
-
-                    $nodes = $nuprojDoc.SelectNodes("*").SelectNodes("*")
+                    $nodes = $nuspecDoc.SelectNodes("*").SelectNodes("*")
 
                     foreach ($node in $nodes)
                     {
-                        if($node.Name -eq "ItemGroup")
+                        if($node.Name -eq "metadata")
                         {
-                            foreach ($itemGroup in $node.ChildNodes)
-                            {
-                                if($itemGroup.Name -eq "Dependency" -and $itemGroup.Attributes["Include"].value -eq $packageName)
+                            foreach ($metadataItem in $node.ChildNodes)
+                            {                          
+                                if($metadataItem.Name -eq "dependencies")
                                 {
-                                    $itemGroup.ChildNodes[0].innertext = "[$packageTargetVersion]"
+                                    foreach ($dependency in $metadataItem.ChildNodes)
+                                    {
+                                        if($dependency.Attributes["id"].value -eq $packageName)
+                                        {
+                                            $dependency.Attributes["version"].value = "[$packageTargetVersion]"
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
 
-                    $nuprojDoc.Save($nuproj[0].FullName)
+                    $nuspecDoc.Save($nuspec[0].FullName)
                 }
 
                 #  update branch name
@@ -242,7 +246,7 @@ else
             "Couldn't find anything to update..." | Write-Host -ForegroundColor Black -BackgroundColor Yellow
         }
     }
-
+                        
     # get back to the original build folder
     cd $env:APPVEYOR_BUILD_FOLDER
 }
