@@ -12,7 +12,7 @@
 
 | Component | Build Status | NuGet Package |
 |:-|---|---|
-| Windows.Storage.Streams | [![Build status](https://ci.appveyor.com/api/projects/status/qlrp45glmyr6wru6/branch/master?svg=true)](https://ci.appveyor.com/project/nfbot/lib-windows-storage-streams/branch/master) | [![NuGet](https://img.shields.io/nuget/vpre/nanoFramework.Windows.Storage.Streams.svg)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/)  |
+| Windows.Storage.Streams | [![Build status](https://ci.appveyor.com/api/projects/status/qlrp45glmyr6wru6/branch/master?svg=true)](https://ci.appveyor.com/project/nfbot/lib-windows-storage-streams/branch/master) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.Windows.Storage.Streams.svg)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/)  |
 | Windows.Storage.Streams (preview) | [![Build status](https://ci.appveyor.com/api/projects/status/qlrp45glmyr6wru6/branch/develop?svg=true)](https://ci.appveyor.com/project/nfbot/lib-windows-storage-streams/branch/develop) | [![MyGet Pre Release](https://img.shields.io/myget/nanoframework-dev/vpre/nanoFramework.Windows.Storage.Streams.svg)](https://www.myget.org/feed/nanoframework-dev/package/nuget/nanoFramework.Windows.Storage.Streams) |
 
 
