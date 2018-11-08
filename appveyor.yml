@@ -113,7 +113,7 @@ for:
   - provider: GitHub
     tag: v$(MyNuGetVersion)
     release: nanoFramework Windows.Storage.Streams Library v$(MyNuGetVersion)
-    description: 'Check the [changelog](https://github.com/nanoframework/lib-nanoFramework.Windows.Storage.Streams/blob/master/CHANGELOG.md)\n\n## Install from NuGet\n\nThe following NuGet packages are available for download from this release\n\n:package: [.NET](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/$(MyNuGetVersion)) v$(MyNuGetVersion)'
+    description: 'Check the [changelog](https://github.com/nanoframework/lib-nanoFramework.Windows.Storage.Streams/blob/$(appveyor_repo_branch)/CHANGELOG.md)\n\n## Install from NuGet\n\nThe following NuGet packages are available for download from this release\n\n:package: [.NET](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/$(MyNuGetVersion)) v$(MyNuGetVersion)'
     auth_token:
       secure: DNixoFFE+pGlwyhj7McfZoln42vOmj0iY1iNV9zXEr3y0NpXlOIgL8k5ehzlFM1S
     artifact:
