@@ -73,8 +73,6 @@ before_deploy:
   - nuget pack source\nanoframework.Windows.Storage.Streams.nuspec -Version %MyNuGetVersion%
   - nuget pack source\nanoframework.Windows.Storage.Streams.DELIVERABLES.nuspec -Version %MyNuGetVersion%
   - ps:  >-
-      .\commit-assemblyinfo-changes.ps1
-      
       .\generate-change-log.ps1
       
       Push-AppveyorArtifact $env:APPVEYOR_BUILD_FOLDER\nanoFramework.Windows.Storage.Streams.$env:MyNuGetVersion.nupkg
