@@ -6,6 +6,7 @@
 
 **Documentation and other chores:**
 
+- Bumps nanoFramework.CoreLibrary from 1.0.5-preview024 to 1.0.6-preview-001 [\#44](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/44)
 - Bumps nanoFramework.CoreLibrary from 1.0.5-preview024 to 1.0.5-preview024 [\#42](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/42)
 - merge back changes from Release 1.0.0 branch [\#38](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/38)
 
