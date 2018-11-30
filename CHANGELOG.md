@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.0.2-preview-021](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.2-preview-021) (2018-11-30)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.2-preview-014...v1.0.2-preview-021)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.CoreLibrary from 1.0.6-preview-010 to 1.0.6-preview-021 [\#49](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/49)
+
 ## [v1.0.2-preview-014](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.2-preview-014) (2018-11-19)
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.2-preview-006...v1.0.2-preview-014)
 
