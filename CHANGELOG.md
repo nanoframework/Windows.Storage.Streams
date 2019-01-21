@@ -12,6 +12,7 @@
 ## [v1.0.2](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.2) (2018-12-14)
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.2-preview-021...v1.0.2)
 
+## [v1.0.0](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.0) (2018-10-17)
 **Documentation and other chores:**
 
 - Release v1.0.2 [\#51](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/51)
