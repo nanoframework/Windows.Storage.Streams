@@ -12,13 +12,23 @@ namespace Windows.Storage.Streams
     /// </summary>
     public sealed class InMemoryRandomAccessStream : MarshalByRefObject, IDisposable, IInputStream, IOutputStream, IRandomAccessStream
     {
-        private byte[] _buffer;
-        private uint _capacity;     // length of usable portion of buffer for stream
-        private uint _position;     // read/write head.
-        private uint _length;       // Number of bytes within the memory stream
+        private ByteBuffer _buffer;
+        //private byte[] _buffer;
 
-        private bool _disposed = false; // To detect redundant calls
-        private bool _isOpen;      // Is this stream open or closed?
+        // length of usable portion of buffer for stream
+        private uint _capacity;
+        
+        // read/write head.
+        private uint _position;
+
+        // Number of bytes within the memory stream
+        private uint _length;
+
+        // To detect redundant calls
+        private bool _disposed = false;
+
+        // Is this stream open or closed?
+        private bool _isOpen;
 
         private const uint MemStreamMaxLength = 0xFFFF;
 
@@ -108,7 +118,7 @@ namespace Windows.Storage.Streams
 
                 if (!allocatedNewArray && newLength > _length)
                 {
-                    Array.Clear(_buffer, (int)_length, (int)(newLength - _length));
+                    Array.Clear(_buffer.Data, (int)_length, (int)(newLength - _length));
                 }
 
                 _length = newLength;
@@ -125,7 +135,7 @@ namespace Windows.Storage.Streams
         /// </summary>
         public InMemoryRandomAccessStream()
         {
-            _buffer = new byte[256];
+            _buffer = new ByteBuffer(256);
             _capacity = 256;
             _isOpen = true;
         }
@@ -153,9 +163,9 @@ namespace Windows.Storage.Streams
                 size = _length - _position;
             }
             buffer = new ByteBuffer(count);
-
+            
             // copy to destination array
-            Array.Copy(_buffer, (int)_position, ((ByteBuffer)buffer).Data, 0, (int)size);
+            Array.Copy(_buffer.Data, (int)_position, ((ByteBuffer)buffer).Data, 0, (int)size);
             ((ByteBuffer)buffer).Length += size;
 
             // update pointers
@@ -228,7 +238,7 @@ namespace Windows.Storage.Streams
                 _length = i;
             }
 
-            Array.Copy(buffer, 0, _buffer, (int)_position, buffer.Length);
+            Array.Copy(buffer, 0, _buffer.Data, (int)_position, buffer.Length);
 
             _position = (uint)i;
 
@@ -249,8 +259,8 @@ namespace Windows.Storage.Streams
 
                 if (newCapacity > 0)
                 {
-                    byte[] newBuffer = new byte[newCapacity];
-                    if (_length > 0) Array.Copy(_buffer, 0, newBuffer, 0, (int)_length);
+                    ByteBuffer newBuffer = new ByteBuffer(newCapacity);
+                    if (_length > 0) Array.Copy(_buffer.Data, 0, newBuffer.Data, 0, (int)_length);
                     _buffer = newBuffer;
                 }
                 else
