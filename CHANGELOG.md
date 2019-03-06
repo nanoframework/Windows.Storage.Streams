@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Work on InMemoryRandomAccessStream [\#56](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/56) [[Breaking-Change](https://github.com/nanoframework/lib-Windows.Storage.Streams/labels/Breaking-Change)]
 - Add internal constructor to ByteBuffer [\#55](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/55)
 
 ## [v1.0.4](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.4) (2019-01-21)
