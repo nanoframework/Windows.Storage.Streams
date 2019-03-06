@@ -147,9 +147,16 @@ namespace Windows.Storage.Streams
         // public DataWriterStoreOperation StoreAsync()
         public uint Store()
         {
-            var result = _stream.GetType().GetMethod("Store").Invoke(_stream, null);
+            // the underlying stream can implement this or not
+            var storeCall = _stream.GetType().GetMethod("Store");
+            if (storeCall != null)
+            {
+                var result = storeCall.Invoke(_stream, null);
 
-            return (uint)result;
+                return (uint)result;
+            }
+
+            return 0;
         }
 
         /// <summary>
