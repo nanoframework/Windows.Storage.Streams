@@ -1,5 +1,13 @@
 # Change Log
 
+## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/HEAD)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.4...HEAD)
+
+**Implemented enhancements:**
+
+- Add internal constructor to ByteBuffer [\#55](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/55)
+
 ## [v1.0.4](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.4) (2019-01-21)
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.2...v1.0.4)
 
