@@ -28,6 +28,12 @@ namespace Windows.Storage.Streams
             _length = 0;
         }
 
+        internal ByteBuffer(byte[] buffer)
+        {
+            _buffer = buffer;
+            _length = 0;
+        }
+
         /// <summary>
         /// Gets the maximum number of bytes that the buffer can hold.
         /// </summary>
