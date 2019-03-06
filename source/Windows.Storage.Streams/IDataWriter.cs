@@ -43,6 +43,14 @@ namespace Windows.Storage.Streams
         IOutputStream DetachStream();
 
         /// <summary>
+        /// Detaches the buffer that is associated with the data writer.
+        /// </summary>
+        /// <returns>
+        /// The detached buffer.
+        /// </returns>
+        IBuffer DetachBuffer();
+
+        /// <summary>
         /// Flushes data.
         /// </summary>
         /// <returns>The stream flush operation.</returns>
