@@ -1,8 +1,7 @@
 # Change Log
 
-## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/HEAD)
-
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.5-preview-009...HEAD)
+## [v1.0.5-preview-016](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.5-preview-016) (2019-04-23)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.5-preview-009...v1.0.5-preview-016)
 
 **Documentation and other chores:**
 
