@@ -4,8 +4,13 @@
 
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.5-preview-016...HEAD)
 
+**Fixed bugs:**
+
+- Fix recursive call to WriteBuffer [\#64](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/64)
+
 **Documentation and other chores:**
 
+- Bumps nanoFramework.CoreLibrary from 1.2.1-preview-013 to 1.2.2-preview.20 [\#65](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/65)
 - Bumps nanoFramework.CoreLibrary from 1.2.1-preview-001 to 1.2.1-preview-013 [\#63](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/63)
 
 ## [v1.0.5-preview-016](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.5-preview-016) (2019-04-23)
