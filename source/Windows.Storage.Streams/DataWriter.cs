@@ -174,7 +174,7 @@ namespace Windows.Storage.Streams
         /// <param name="buffer">The value to write.</param>
         public void WriteBuffer(IBuffer buffer)
         {
-            WriteBuffer(buffer);
+            WriteBuffer(buffer, 0, buffer.Length);
         }
 
         /// <summary>
