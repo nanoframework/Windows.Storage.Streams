@@ -6,6 +6,7 @@
 
 **Documentation and other chores:**
 
+- Bumps nanoFramework.CoreLibrary from 1.2.6-preview.1 to 1.2.6-preview.7 [\#71](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/71)
 - Work on native assembly declaration [\#69](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/69) [[Breaking-Change](https://github.com/nanoframework/lib-Windows.Storage.Streams/labels/Breaking-Change)]
 
 ## [v1.0.7-preview.10](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.7-preview.10) (2019-06-20)
