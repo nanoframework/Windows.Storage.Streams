@@ -66,7 +66,7 @@ namespace Windows.Storage.Streams
         }
 
         /// <summary>
-        /// Detaches a stream that was previously attached to the writer.
+        /// Detaches a stream that was previously attached to the data writer.
         /// </summary>
         /// <returns>The detached stream.</returns>
         public IOutputStream DetachStream()
@@ -74,6 +74,18 @@ namespace Windows.Storage.Streams
             IOutputStream outputStream = _stream;
             _stream = null;
             return outputStream;
+        }
+
+        /// <summary>
+        /// Detaches the buffer that is associated with the data writer.
+        /// </summary>
+        /// <returns>
+        /// The detached buffer.
+        /// </returns>
+        public IBuffer DetachBuffer()
+        {
+            var buffer = (IBuffer)_stream.GetType().GetField("_buffer", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(_stream);
+            return buffer;
         }
 
         ///// <summary>
@@ -135,9 +147,16 @@ namespace Windows.Storage.Streams
         // public DataWriterStoreOperation StoreAsync()
         public uint Store()
         {
-            var result = _stream.GetType().GetMethod("Store").Invoke(_stream, null);
+            // the underlying stream can implement this or not
+            var storeCall = _stream.GetType().GetMethod("Store");
+            if (storeCall != null)
+            {
+                var result = storeCall.Invoke(_stream, null);
 
-            return (uint)result;
+                return (uint)result;
+            }
+
+            return 0;
         }
 
         /// <summary>
@@ -155,7 +174,7 @@ namespace Windows.Storage.Streams
         /// <param name="buffer">The value to write.</param>
         public void WriteBuffer(IBuffer buffer)
         {
-            WriteBuffer(buffer);
+            WriteBuffer(buffer, 0, buffer.Length);
         }
 
         /// <summary>

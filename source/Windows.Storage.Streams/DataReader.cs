@@ -34,6 +34,23 @@ namespace Windows.Storage.Streams
             _buffer = new ByteBuffer(defaultBufferSize);
         }
 
+        private DataReader(IBuffer buffer)
+        {
+            _disposed = false;
+
+            _buffer = (ByteBuffer)buffer;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the data reader with data from the specified buffer.
+        /// </summary>
+        /// <param name="buffer">The buffer.</param>
+        /// <returns>The data reader.</returns>
+        public static DataReader FromBuffer(IBuffer buffer)
+        {
+            return new DataReader(buffer);
+        }
+
         /// <summary>
         /// Gets or sets the byte order of the data in the input stream.
         /// </summary>

@@ -3,7 +3,7 @@ trigger:
     include:
     - master
     - develop
-    - release/*
+    - release-/*
     - refs/tags/*
   paths:
     exclude:
@@ -46,11 +46,9 @@ steps:
 
 # step from template @ nf-tools repo
 # all build, update and publish steps
-- template: azure-pipelines-templates/class-lib-build.yml@templates  
+- template: azure-pipelines-templates/class-lib-build.yml@templates
   parameters:
-    sourceFileName: 'win_dev_gpio_native.cpp'
-    classLibName: 'Windows.Storage.Streams'
-    skipNativeUpdate: true
+    sonarCloudProject: 'nanoframework_lib-Windows.Storage.Streams'
 
 # update dependencies
 - task: UpdatenFDependencies@1
@@ -59,7 +57,8 @@ steps:
     repositoriesToUpdate: |
       lib-Windows.Devices.SerialCommunication
       lib-Windows.Storage
-  condition: and( succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v') )
+  condition: or( and( succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), contains(variables['getCommitMessage.COMMIT_MESSAGE'], '***UPDATE_DEPENDENTS***') ), eq(variables['UPDATE_DEPENDENTS'], 'true') )
+  continueOnError: true
   displayName: Update dependent class libs
 
 # step from template @ nf-tools repo

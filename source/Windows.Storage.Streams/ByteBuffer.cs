@@ -29,6 +29,19 @@ namespace Windows.Storage.Streams
         }
 
         /// <summary>
+        /// Initializes a new instance of the Buffer class from the byte array.
+        /// </summary>
+        /// <param name="buffer">The byte array that will become the buffer data.</param>
+        /// <remarks>
+        /// The constructor will set the buffer length to the length of the <para>buffer</para> array.
+        /// </remarks>
+        internal ByteBuffer(byte[] buffer)
+        {
+            _buffer = buffer;
+            _length = (uint)buffer.Length;
+        }
+
+        /// <summary>
         /// Gets the maximum number of bytes that the buffer can hold.
         /// </summary>
         /// <value>
