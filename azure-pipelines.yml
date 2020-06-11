@@ -10,7 +10,6 @@ trigger:
     - CHANGELOG.md
     - /*.md
     - .gitignore
-    - appveyor.yml
   # waiting for feature to become available
   # tags:
   #   include:
@@ -57,7 +56,7 @@ steps:
     repositoriesToUpdate: |
       lib-Windows.Devices.SerialCommunication
       lib-Windows.Storage
-  condition: or( and( succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v') ), and( succeeded(), contains(variables['Build.SourceVersionMessage'], '***UPDATE_DEPENDENTS***') ), eq(variables['UPDATE_DEPENDENTS'], 'true') )
+  condition: or( and( succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['StartReleaseCandidate'], 'false') ), and( succeeded(), contains(variables['getCommitMessage.COMMIT_MESSAGE'], '***UPDATE_DEPENDENTS***'), eq(variables['StartReleaseCandidate'], 'false') ), eq(variables['UPDATE_DEPENDENTS'], 'true') )
   continueOnError: true
   displayName: Update dependent class libs
 
