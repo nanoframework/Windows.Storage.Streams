@@ -1,5 +1,17 @@
 # Changelog
 
+## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/HEAD)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.9.0-preview.4...HEAD)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.System.Text from 1.0.0-preview.25 to 1.0.0 [\#101](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/101)
+
+## [v1.9.0-preview.4](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.9.0-preview.4) (2020-06-11)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.9.0-preview.3...v1.9.0-preview.4)
+
 ## [v1.9.0-preview.3](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.9.0-preview.3) (2020-06-11)
 
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.8.2...v1.9.0-preview.3)
