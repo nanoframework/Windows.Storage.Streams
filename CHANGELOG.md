@@ -283,14 +283,11 @@
 **Fixed bugs:**
 
 - Fix bug inDataWriter Store [\#59](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/59)
+- Fix ByteBuffer from byte array constructor [\#58](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/58)
 
 ## [v1.0.5-preview-006](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.5-preview-006) (2019-03-06)
 
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.0.5-preview-004...v1.0.5-preview-006)
-
-**Fixed bugs:**
-
-- Fix ByteBuffer from byte array constructor [\#58](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/58)
 
 ## [v1.0.5-preview-004](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.0.5-preview-004) (2019-03-06)
 
