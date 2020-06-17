@@ -1,6 +1,6 @@
 # Changelog
 
-## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/HEAD)
+## [v1.9.0-preview.6](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.9.0-preview.6) (2020-06-12)
 
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.9.0...HEAD)
 
