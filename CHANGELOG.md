@@ -1,8 +1,8 @@
 # Changelog
 
-## [v1.9.0-preview.6](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.9.0-preview.6) (2020-06-12)
+## [v1.10.0-preview.4](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.0-preview.4) (2020-06-16)
 
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.9.0...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.9.0...v1.10.0-preview.4)
 
 **Documentation and other chores:**
 
