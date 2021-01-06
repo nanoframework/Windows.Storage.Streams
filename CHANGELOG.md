@@ -2,7 +2,17 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.14...HEAD)
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.16...HEAD)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#112](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/112)
+- Update 2 NuGet dependencies [\#111](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/111)
+- Update 2 NuGet dependencies [\#110](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/110)
+
+## [v1.10.1-preview.16](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.16) (2020-12-07)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.14...v1.10.1-preview.16)
 
 **Documentation and other chores:**
 
@@ -433,6 +443,7 @@
 
 **Fixed bugs:**
 
+- Fix regression with ReadString [\#20](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/20)
 - Fix ReadString [\#19](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/19)
 - Correct access to UnstoredBufferLength [\#12](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/12)
 
