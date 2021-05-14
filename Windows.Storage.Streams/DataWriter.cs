@@ -60,32 +60,8 @@ namespace Windows.Storage.Streams
         {
             get
             {
-                // need to use reflection to reach the field value
                 return _stream.UnstoredBufferLength;
             }
-        }
-
-        /// <summary>
-        /// Detaches a stream that was previously attached to the data writer.
-        /// </summary>
-        /// <returns>The detached stream.</returns>
-        public IOutputStream DetachStream()
-        {
-            IOutputStream outputStream = _stream;
-            _stream = null;
-            return outputStream;
-        }
-
-        /// <summary>
-        /// Detaches the buffer that is associated with the data writer.
-        /// </summary>
-        /// <returns>
-        /// The detached buffer.
-        /// </returns>
-        public IBuffer DetachBuffer()
-        {
-            var buffer = (IBuffer)_stream.GetType().GetField("_buffer", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(_stream);
-            return buffer;
         }
 
         ///// <summary>
