@@ -11,6 +11,12 @@ namespace Windows.Storage.Streams
     public interface IOutputStream
     {
         /// <summary>
+        /// Gets the size of the buffer that has not been used.
+        /// </summary>
+        /// <value>The available buffer length, in bytes.</value>
+        uint UnstoredBufferLength { get; set; }
+
+        /// <summary>
         /// Flushes data in a sequential stream.
         /// </summary>
         /// <returns>The stream flush operation.</returns>
