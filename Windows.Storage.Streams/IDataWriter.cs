@@ -37,20 +37,6 @@ namespace Windows.Storage.Streams
         uint UnstoredBufferLength { get; }
 
         /// <summary>
-        /// Detaches a stream that was previously attached to the writer.
-        /// </summary>
-        /// <returns>The detached stream.</returns>
-        IOutputStream DetachStream();
-
-        /// <summary>
-        /// Detaches the buffer that is associated with the data writer.
-        /// </summary>
-        /// <returns>
-        /// The detached buffer.
-        /// </returns>
-        IBuffer DetachBuffer();
-
-        /// <summary>
         /// Flushes data.
         /// </summary>
         /// <returns>The stream flush operation.</returns>
