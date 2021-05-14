@@ -32,6 +32,9 @@ namespace Windows.Storage.Streams
 
         private const uint MemStreamMaxLength = 0xFFFF;
 
+        /// <inheritdoc/>
+        public uint UnstoredBufferLength { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         /// <summary>
         /// Gets a value that indicates whether the stream can be read from.
         /// </summary>
