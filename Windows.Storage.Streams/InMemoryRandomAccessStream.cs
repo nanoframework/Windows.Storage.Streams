@@ -307,6 +307,11 @@ namespace Windows.Storage.Streams
             Dispose(true);
         }
 
+        public uint Store()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

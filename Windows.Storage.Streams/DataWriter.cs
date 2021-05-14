@@ -120,19 +120,9 @@ namespace Windows.Storage.Streams
         /// <remarks>
         /// This method is specific to nanoFramework. The equivalent method in the UWP API is: StoreAsync.
         /// </remarks>
-        // public DataWriterStoreOperation StoreAsync()
         public uint Store()
         {
-            // the underlying stream can implement this or not
-            var storeCall = _stream.GetType().GetMethod("Store");
-            if (storeCall != null)
-            {
-                var result = storeCall.Invoke(_stream, null);
-
-                return (uint)result;
-            }
-
-            return 0;
+            return _stream.Store();
         }
 
         /// <summary>
