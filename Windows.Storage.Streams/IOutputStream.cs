@@ -36,5 +36,7 @@ namespace Windows.Storage.Streams
         /// </remarks>
         //IAsyncOperationWithProgress<uint, uint> WriteAsync(IBuffer buffer)
         void Write(byte[] buffer);
+       
+        uint Store();
     }
 }
