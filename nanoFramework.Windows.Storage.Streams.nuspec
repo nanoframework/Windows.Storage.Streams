@@ -19,8 +19,8 @@
     <summary>Windows.Storage.Streams assembly for nanoFramework C# projects</summary>
     <tags>nanoFramework C# csharp netmf netnf Windows.Storage.Streams</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.10.5-preview.10" />
-      <dependency id="nanoFramework.System.Text" version="1.1.1-preview.59" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.10.5-preview.13" />
+      <dependency id="nanoFramework.System.Text" version="1.1.1-preview.61" />
     </dependencies>
   </metadata>
   <files>
