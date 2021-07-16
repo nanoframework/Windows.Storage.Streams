@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2017 The nanoFramework project contributors
+// Copyright (c) .NET Foundation and Contributors
 // See LICENSE file in the project root for full license information.
 //
 
@@ -10,6 +10,12 @@ namespace Windows.Storage.Streams
     /// </summary>
     public interface IOutputStream
     {
+        /// <summary>
+        /// Gets the size of the buffer that has not been used.
+        /// </summary>
+        /// <value>The available buffer length, in bytes.</value>
+        uint UnstoredBufferLength { get; set; }
+
         /// <summary>
         /// Flushes data in a sequential stream.
         /// </summary>
@@ -30,5 +36,7 @@ namespace Windows.Storage.Streams
         /// </remarks>
         //IAsyncOperationWithProgress<uint, uint> WriteAsync(IBuffer buffer)
         void Write(byte[] buffer);
+       
+        uint Store();
     }
 }

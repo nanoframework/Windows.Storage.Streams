@@ -1,6 +1,6 @@
 trigger:
   branches:
-    include: [master, develop, "release-*" ]
+    include: [main, master, develop, "release-*" ]
   paths:
     exclude: ["*.md", .gitignore]
   tags:
@@ -17,15 +17,15 @@ resources:
       endpoint: nanoframework
 
 pool:
-  vmImage: 'VS2017-Win2016'
+  vmImage: 'windows-2019'
 
 variables:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
-  solution: '**/source/*.sln'
+  solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   nugetPackageName: 'nanoFramework.Windows.Storage.Streams'
-  repoName: 'lib-Windows.Storage.Streams'
+  repoName: 'Windows.Storage.Streams'
 
 steps:
 
@@ -40,8 +40,8 @@ steps:
   inputs:
     gitHubToken: $(GitHubToken)
     repositoriesToUpdate: |
-      lib-Windows.Devices.SerialCommunication
-      lib-Windows.Storage
+      Windows.Devices.SerialCommunication
+      Windows.Storage
   condition: or( and( succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['StartReleaseCandidate'], 'false') ), and( succeeded(), contains(variables['getCommitMessage.COMMIT_MESSAGE'], '***UPDATE_DEPENDENTS***'), eq(variables['StartReleaseCandidate'], 'false') ), eq(variables['UPDATE_DEPENDENTS'], 'true') )
   continueOnError: true
   displayName: Update dependent class libs

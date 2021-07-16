@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2017 The nanoFramework project contributors
+// Copyright (c) .NET Foundation and Contributors
 // See LICENSE file in the project root for full license information.
 //
 
@@ -60,32 +60,8 @@ namespace Windows.Storage.Streams
         {
             get
             {
-                // need to use reflection to reach the field value
-                return (uint)_stream.GetType().GetField("_unstoredBufferLength", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(_stream);
+                return _stream.UnstoredBufferLength;
             }
-        }
-
-        /// <summary>
-        /// Detaches a stream that was previously attached to the data writer.
-        /// </summary>
-        /// <returns>The detached stream.</returns>
-        public IOutputStream DetachStream()
-        {
-            IOutputStream outputStream = _stream;
-            _stream = null;
-            return outputStream;
-        }
-
-        /// <summary>
-        /// Detaches the buffer that is associated with the data writer.
-        /// </summary>
-        /// <returns>
-        /// The detached buffer.
-        /// </returns>
-        public IBuffer DetachBuffer()
-        {
-            var buffer = (IBuffer)_stream.GetType().GetField("_buffer", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(_stream);
-            return buffer;
         }
 
         ///// <summary>
@@ -144,19 +120,9 @@ namespace Windows.Storage.Streams
         /// <remarks>
         /// This method is specific to nanoFramework. The equivalent method in the UWP API is: StoreAsync.
         /// </remarks>
-        // public DataWriterStoreOperation StoreAsync()
         public uint Store()
         {
-            // the underlying stream can implement this or not
-            var storeCall = _stream.GetType().GetMethod("Store");
-            if (storeCall != null)
-            {
-                var result = storeCall.Invoke(_stream, null);
-
-                return (uint)result;
-            }
-
-            return 0;
+            return _stream.Store();
         }
 
         /// <summary>

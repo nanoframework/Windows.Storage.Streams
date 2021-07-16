@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2017 The nanoFramework project contributors
+// Copyright (c) .NET Foundation and Contributors
 // See LICENSE file in the project root for full license information.
 //
 
@@ -31,6 +31,9 @@ namespace Windows.Storage.Streams
         private bool _isOpen;
 
         private const uint MemStreamMaxLength = 0xFFFF;
+
+        /// <inheritdoc/>
+        public uint UnstoredBufferLength { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         /// <summary>
         /// Gets a value that indicates whether the stream can be read from.
@@ -302,6 +305,11 @@ namespace Windows.Storage.Streams
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
+        }
+
+        public uint Store()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

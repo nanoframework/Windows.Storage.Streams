@@ -1,5 +1,5 @@
 ﻿//
-// Copyright (c) 2017 The nanoFramework project contributors
+// Copyright (c) .NET Foundation and Contributors
 // See LICENSE file in the project root for full license information.
 //
 
@@ -35,20 +35,6 @@ namespace Windows.Storage.Streams
         /// </summary>
         /// <value>The available buffer length, in bytes.</value>
         uint UnstoredBufferLength { get; }
-
-        /// <summary>
-        /// Detaches a stream that was previously attached to the writer.
-        /// </summary>
-        /// <returns>The detached stream.</returns>
-        IOutputStream DetachStream();
-
-        /// <summary>
-        /// Detaches the buffer that is associated with the data writer.
-        /// </summary>
-        /// <returns>
-        /// The detached buffer.
-        /// </returns>
-        IBuffer DetachBuffer();
 
         /// <summary>
         /// Flushes data.

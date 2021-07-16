@@ -2,6 +2,92 @@
 
 ## [v1.10.0-preview.4](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.0-preview.4) (2020-06-16)
 
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.26...HEAD)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#115](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/115)
+
+## [v1.10.1-preview.26](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.26) (2021-03-17)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.24...v1.10.1-preview.26)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.System.Text from 1.1.1-preview.29 to 1.1.1-preview.33 [\#114](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/114)
+
+## [v1.10.1-preview.24](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.24) (2021-03-02)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.21...v1.10.1-preview.24)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#113](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/113)
+
+## [v1.10.1-preview.21](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.21) (2021-01-06)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.16...v1.10.1-preview.21)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#112](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/112)
+- Update 2 NuGet dependencies [\#111](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/111)
+- Update 2 NuGet dependencies [\#110](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/110)
+
+## [v1.10.1-preview.16](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.16) (2020-12-07)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.14...v1.10.1-preview.16)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#109](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/109)
+
+## [v1.10.1-preview.14](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.14) (2020-10-21)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.12...v1.10.1-preview.14)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#108](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/108)
+
+## [v1.10.1-preview.12](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.12) (2020-10-20)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.10...v1.10.1-preview.12)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#107](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/107)
+
+## [v1.10.1-preview.10](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.10) (2020-10-01)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.8...v1.10.1-preview.10)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#106](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/106)
+
+## [v1.10.1-preview.8](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.8) (2020-09-25)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.1-preview.2...v1.10.1-preview.8)
+
+## [v1.10.1-preview.2](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.1-preview.2) (2020-09-19)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.0...v1.10.1-preview.2)
+
+**Documentation and other chores:**
+
+- Update 2 NuGet dependencies [\#105](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/105)
+
+## [v1.10.0](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.0) (2020-06-17)
+
+[Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.10.0-preview.4...v1.10.0)
+
+**Documentation and other chores:**
+
+- Release release-v1.10.0 [\#104](https://github.com/nanoframework/lib-Windows.Storage.Streams/pull/104)
+
+## [v1.10.0-preview.4](https://github.com/nanoframework/lib-Windows.Storage.Streams/tree/v1.10.0-preview.4) (2020-06-16)
+
 [Full Changelog](https://github.com/nanoframework/lib-Windows.Storage.Streams/compare/v1.9.0...v1.10.0-preview.4)
 
 **Documentation and other chores:**
