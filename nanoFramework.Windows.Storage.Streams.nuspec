@@ -5,18 +5,18 @@
     <version>$version$</version>
     <title>nanoFramework.Windows.Storage.Streams</title>
     <authors>nanoFramework project contributors</authors>
-    <owners>nanoFramework project contributors</owners>
+    <owners>nanoframework,dotnetfoundation</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">Apache-2.0</license>
+    <license type="file">LICENSE.md</license>
     <releaseNotes>
     </releaseNotes>
+    <readme>docs\README.md</readme>
     <developmentDependency>false</developmentDependency>
-    <projectUrl>https://github.com/nanoframework/lib-Windows.Storage.Streams</projectUrl>
+    <projectUrl>https://github.com/nanoframework/Windows.Storage.Streams</projectUrl>
     <iconUrl>https://secure.gravatar.com/avatar/97d0e092247f0716db6d4b47b7d1d1ad</iconUrl>
-    <repository type="git" url="https://github.com/nanoframework/lib-Windows.Storage.Streams" commit="$commit$" />
+    <repository type="git" url="https://github.com/nanoframework/Windows.Storage.Streams" commit="$commit$" />
     <copyright>Copyright (c) .NET Foundation and Contributors</copyright>
-    <description>This package includes the Windows.Storage.Streams assembly for nanoFramework C# projects.</description>
-    <summary>Windows.Storage.Streams assembly for nanoFramework C# projects</summary>
+    <description>This package includes the Windows.Storage.Streams assembly for .NET nanoFramework C# projects.</description>
     <tags>nanoFramework C# csharp netmf netnf Windows.Storage.Streams</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.10.5" />
@@ -29,7 +29,9 @@
     <file src="Windows.Storage.Streams\bin\Release\Windows.Storage.Streams.pdbx" target="lib\Windows.Storage.Streams.pdbx" />
     <file src="Windows.Storage.Streams\bin\Release\Windows.Storage.Streams.pe" target="lib\Windows.Storage.Streams.pe" />
     <file src="Windows.Storage.Streams\bin\Release\Windows.Storage.Streams.xml" target="lib\Windows.Storage.Streams.xml" />
-    <!-- readme -->
-    <file src="readme.txt" target="readme.txt" />
+    <file src="assets\readme.txt" target="" />
+    <file src="README.md" target="docs\" />
+    <file src="assets\nf-logo.png" target="images" />
+    <file src="LICENSE.md" target="" />
   </files>
 </package>
