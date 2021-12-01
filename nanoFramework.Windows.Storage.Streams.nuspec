@@ -19,7 +19,7 @@
     <description>This package includes the Windows.Storage.Streams assembly for .NET nanoFramework C# projects.</description>
     <tags>nanoFramework C# csharp netmf netnf Windows.Storage.Streams</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.10.5" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.11.6-preview.2" />
       <dependency id="nanoFramework.System.Text" version="1.1.1" />
     </dependencies>
   </metadata>
