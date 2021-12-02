@@ -2,7 +2,15 @@
 
 ## [**Changes available only in 'Preview' NuGet packages:**](https://github.com/nanoframework/Windows.Storage.Streams/tree/HEAD)
 
-[Full Changelog](https://github.com/nanoframework/Windows.Storage.Streams/compare/v1.12.3-preview.6...HEAD)
+[Full Changelog](https://github.com/nanoframework/Windows.Storage.Streams/compare/v1.12.3-preview.8...HEAD)
+
+**Documentation and other chores:**
+
+- Bumps nanoFramework.System.Text from 1.1.2-preview.9 to 1.1.2-preview.12 [\#141](https://github.com/nanoframework/Windows.Storage.Streams/pull/141)
+
+## [v1.12.3-preview.8](https://github.com/nanoframework/Windows.Storage.Streams/tree/v1.12.3-preview.8) (2021-12-01)
+
+[Full Changelog](https://github.com/nanoframework/Windows.Storage.Streams/compare/v1.12.3-preview.6...v1.12.3-preview.8)
 
 **Documentation and other chores:**
 
