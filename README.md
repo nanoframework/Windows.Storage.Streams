@@ -1,17 +1,17 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nanoframework_lib-Windows.Storage.Streams&metric=alert_status)](https://sonarcloud.io/dashboard?id=nanoframework_lib-Windows.Storage.Streams) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=nanoframework_lib-Windows.Storage.Streams&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=nanoframework_lib-Windows.Storage.Streams) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![NuGet](https://img.shields.io/nuget/dt/nanoFramework.Windows.Storage.Streams.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/) [![#yourfirstpr](https://img.shields.io/badge/first--timers--only-friendly-blue.svg)](https://github.com/nanoframework/Home/blob/master/CONTRIBUTING.md) [![Discord](https://img.shields.io/discord/478725473862549535.svg?logo=discord&logoColor=white&label=Discord&color=7289DA)](https://discord.gg/gCyBu8T)
 
-![nanoFramework logo](https://github.com/nanoframework/Home/blob/master/resources/logo/nanoFramework-repo-logo.png)
+![nanoFramework logo](https://raw.githubusercontent.com/nanoframework/Home/main/resources/logo/nanoFramework-repo-logo.png)
 
 -----
 
-### Welcome to the **nanoFramework** Windows.Storage.Streams Library repository!
+### Welcome to the .NET **nanoFramework** Windows.Storage.Streams Library repository
 
 ## Build status
 
 | Component | Build Status | NuGet Package |
 |:-|---|---|
 | Windows.Storage.Streams | [![Build Status](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_apis/build/status/nanoframework.lib-Windows.Storage.Streams?branchName=develop)](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_build/latest?definitionId=21?branchName=master) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.Windows.Storage.Streams.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/) |
-| Windows.Storage.Streams (preview) | [![Build Status](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_apis/build/status/nanoframework.lib-Windows.Storage.Streams?branchName=develop)](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_build/latest?definitionId=21?branchName=develop) | [![](https://badgen.net/badge/NuGet/preview/D7B023?icon=https://simpleicons.now.sh/azuredevops/fff)](https://dev.azure.com/nanoframework/feed/_packaging?_a=package&feed=sandbox&package=nanoFramework.Windows.Storage.Streams&protocolType=NuGet&view=overview) |
+| Windows.Storage.Streams (preview) | [![Build Status](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_apis/build/status/nanoframework.lib-Windows.Storage.Streams?branchName=develop)](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_build/latest?definitionId=21?branchName=develop) | [![NuGet](https://img.shields.io/nuget/vpre/nanoFramework.Windows.Storage.Streams.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/) |
 
 ## Feedback and documentation
 
@@ -29,7 +29,7 @@ The **nanoFramework** Class Libraries are licensed under the [MIT license](LICEN
 
 ## Code of Conduct
 
-This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community.
+This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behaviour in our community.
 For more information see the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
 
 ### .NET Foundation
