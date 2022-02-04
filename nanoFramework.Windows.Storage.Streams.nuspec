@@ -20,7 +20,7 @@
     <tags>nanoFramework C# csharp netmf netnf Windows.Storage.Streams</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.12.0-preview.5" />
-      <dependency id="nanoFramework.System.Text" version="1.1.3-preview.11" />
+      <dependency id="nanoFramework.System.Text" version="1.1.3-preview.13" />
     </dependencies>
   </metadata>
   <files>
