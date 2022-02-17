@@ -4,8 +4,7 @@
     <id>nanoFramework.Windows.Storage.Streams</id>
     <version>$version$</version>
     <title>nanoFramework.Windows.Storage.Streams</title>
-    <authors>nanoFramework project contributors</authors>
-    <owners>nanoframework,dotnetfoundation</owners>
+    <authors>nanoframework</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="file">LICENSE.md</license>
     <releaseNotes>
@@ -17,7 +16,7 @@
     <repository type="git" url="https://github.com/nanoframework/Windows.Storage.Streams" commit="$commit$" />
     <copyright>Copyright (c) .NET Foundation and Contributors</copyright>
     <description>This package includes the Windows.Storage.Streams assembly for .NET nanoFramework C# projects.</description>
-    <tags>nanoFramework C# csharp netmf netnf Windows.Storage.Streams</tags>
+    <tags>nanoFramework C# csharp netmf netnf streams</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.12.0-preview.9" />
       <dependency id="nanoFramework.System.Text" version="1.1.3-preview.15" />
