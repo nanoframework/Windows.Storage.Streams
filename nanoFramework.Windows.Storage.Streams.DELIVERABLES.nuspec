@@ -4,8 +4,7 @@
     <id>nanoFramework.Windows.Storage.Streams.DELIVERABLES</id>
     <version>$version$</version>
     <title>nanoFramework.Windows.Storage.Streams.DELIVERABLES</title>
-    <authors>nanoFramework project contributors</authors>
-    <owners>nanoframework,dotnetfoundation</owners>
+    <authors>nanoframework</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
     </releaseNotes>
