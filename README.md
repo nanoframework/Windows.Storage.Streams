@@ -10,8 +10,7 @@
 
 | Component | Build Status | NuGet Package |
 |:-|---|---|
-| Windows.Storage.Streams | [![Build Status](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_apis/build/status/nanoframework.lib-Windows.Storage.Streams?branchName=develop)](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_build/latest?definitionId=21?branchName=master) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.Windows.Storage.Streams.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/) |
-| Windows.Storage.Streams (preview) | [![Build Status](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_apis/build/status/nanoframework.lib-Windows.Storage.Streams?branchName=develop)](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_build/latest?definitionId=21?branchName=develop) | [![NuGet](https://img.shields.io/nuget/vpre/nanoFramework.Windows.Storage.Streams.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/) |
+| Windows.Storage.Streams | [![Build Status](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_apis/build/status/Windows.Storage.Streams?repoName=nanoframework%2FWindows.Storage.Streams&branchName=main)](https://dev.azure.com/nanoframework/Windows.Storage.Streams/_build/latest?definitionId=21&repoName=nanoframework%2FWindows.Storage.Streams&branchName=main) | [![NuGet](https://img.shields.io/nuget/v/nanoFramework.Windows.Storage.Streams.svg?label=NuGet&style=flat&logo=nuget)](https://www.nuget.org/packages/nanoFramework.Windows.Storage.Streams/) |
 
 ## Feedback and documentation
 
