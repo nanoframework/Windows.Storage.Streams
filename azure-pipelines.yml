@@ -59,7 +59,6 @@ steps:
 - template: azure-pipelines-templates/update-dependents.yml@templates  
   parameters:
     repositoriesToUpdate: |
-      Windows.Devices.SerialCommunication
       Windows.Storage
 
 # step from template @ nf-tools repo
