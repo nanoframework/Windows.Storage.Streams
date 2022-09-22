@@ -14,4 +14,4 @@ jobs:
     name: nanoFramework
     uses: nanoframework/nf-tools/.github/workflows/check-packages-updated.yml@main
     with:
-      solutionsToCheck: 'nanoFramework.Windows.Storage.Streams.sln'
+      solution: 'nanoFramework.Windows.Storage.Streams.sln'
