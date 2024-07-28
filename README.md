@@ -4,6 +4,10 @@
 
 -----
 
+## ⚠️ This library is now deprecated and has been replaced with [System.IO.FileSystem](https://github.com/nanoframework/System.IO.FileSystem). Please use that one instead. ⚠️
+
+-----
+
 ### Welcome to the .NET **nanoFramework** Windows.Storage.Streams Library repository
 
 ## Build status
